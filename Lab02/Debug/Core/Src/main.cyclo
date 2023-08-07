@@ -1,0 +1,6 @@
+../Core/Src/main.c:68:6:Blink	2
+../Core/Src/main.c:78:6:MoveUp	2
+../Core/Src/main.c:86:6:MoveDown	3
+../Core/Src/main.c:99:5:main	5
+../Core/Src/main.c:154:6:SystemClock_Config	3
+../Core/Src/main.c:199:6:Error_Handler	1

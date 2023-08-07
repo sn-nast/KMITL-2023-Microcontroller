@@ -1,0 +1,17 @@
+15:35:41 **** Incremental Build of configuration Debug for project Lab02 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -IC:/Users/sunsu/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.0/Drivers/STM32F7xx_HAL_Driver/Inc -IC:/Users/sunsu/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.0/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -IC:/Users/sunsu/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.0/Drivers/CMSIS/Device/ST/STM32F7xx/Include -IC:/Users/sunsu/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.0/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Lab02.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\MAD_Lab\Lab02\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab02.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab02.elf
+ 
+arm-none-eabi-size   Lab02.elf 
+arm-none-eabi-objdump -h -S  Lab02.elf  > "Lab02.list"
+   text	   data	    bss	    dec	    hex	filename
+   6448	     56	   1568	   8072	   1f88	Lab02.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab02.list
+ 
+
+15:35:42 Build Finished. 0 errors, 0 warnings. (took 909ms)
+
