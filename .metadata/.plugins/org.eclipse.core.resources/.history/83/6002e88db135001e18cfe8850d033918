@@ -97,7 +97,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  char str[] = "Hello, World!!\r\n";
+	  char str[] = “Hello, World!!\r\n” ;
 	  while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
 	  HAL_UART_Transmit(&huart3, (uint8_t*) str, strlen(str),1000);
 	  HAL_Delay(500);
