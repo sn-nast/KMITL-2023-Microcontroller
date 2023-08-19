@@ -1,3 +1,11 @@
-../Core/Src/main.c:66:5:main	40	static
-../Core/Src/main.c:114:6:SystemClock_Config	88	static
-../Core/Src/main.c:159:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:67:5:main	8	static
+../Core/Src/main.c:110:6:MenuCommand	104	static
+../Core/Src/main.c:127:6:UserInput	32	static
+../Core/Src/main.c:148:6:CheckCommand	112	static
+../Core/Src/main.c:168:6:BlinkLed	24	static
+../Core/Src/main.c:178:6:WaitingReceiver	24	static
+../Core/Src/main.c:199:6:PrintOutput	32	static
+../Core/Src/main.c:213:6:DefaultDelay	8	static
+../Core/Src/main.c:218:6:AutoTransmit	24	static
+../Core/Src/main.c:229:6:SystemClock_Config	88	static
+../Core/Src/main.c:274:6:Error_Handler	4	static,ignoring_inline_asm
