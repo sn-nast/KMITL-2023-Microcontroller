@@ -1,0 +1,32 @@
+16:02:17 **** Incremental Build of configuration Debug for project SpecialCase-01-B02 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'checkCoUserIsReady':
+../Core/Src/main.c:132:27: warning: ' is ready
+   ' directive writing 11 bytes into a region of size between 0 and 49 [-Wformat-overflow=]
+  132 |         sprintf(text,"\t%s is ready\r\n", coUserName);
+      |                           ^~~~~~~~~~~~~
+../Core/Src/main.c:132:9: note: 'sprintf' output between 13 and 62 bytes into a destination of size 50
+  132 |         sprintf(text,"\t%s is ready\r\n", coUserName);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'showReceivedMessage':
+../Core/Src/main.c:158:31: warning: '%s' directive writing up to 99 bytes into a region of size between 46 and 95 [-Wformat-overflow=]
+  158 |         sprintf(text,"\t %s : %s\r\n", coUserName, receivedMessage);
+      |                               ^~                   ~~~~~~~~~~~~~~~
+../Core/Src/main.c:158:9: note: 'sprintf' output between 8 and 156 bytes into a destination of size 100
+  158 |         sprintf(text,"\t %s : %s\r\n", coUserName, receivedMessage);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "SpecialCase-01-B02.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\SpecialCase-01-B02\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SpecialCase-01-B02.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SpecialCase-01-B02.elf
+ 
+arm-none-eabi-size   SpecialCase-01-B02.elf 
+arm-none-eabi-objdump -h -S  SpecialCase-01-B02.elf  > "SpecialCase-01-B02.list"
+   text	   data	    bss	    dec	    hex	filename
+  19864	    116	   2396	  22376	   5768	SpecialCase-01-B02.elf
+Finished building: default.size.stdout
+ 
+Finished building: SpecialCase-01-B02.list
+ 
+
+16:02:19 Build Finished. 0 errors, 2 warnings. (took 1s.423ms)
+

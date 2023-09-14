@@ -46,7 +46,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-	char ch1 = 'B';
+	int isQuit = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -98,128 +98,89 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-//	  AutoTransmit();
-	  WaitingReceiver();
-//	  MenuCommand();
+	  int isQuit2 = 0;
+	  while(!isQuit2){
+		  MenuCommand(&isQuit2);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
 
 
-void MenuCommand() {
-	bool isQuit = false;
-	char command;
-	char IntroCommand[] =
-			"Display Blinking LED PRESS (1, 2) \r\n \
-			Display Group Members PRESS m \r\n \
-			Quit PRESS q \r\n";
+void MenuCommand(int *isQuit) {
 
-	PrintOutput(&IntroCommand, true);
+	char introCommand[] =
+			"Display Blinking LED PRESS (1, 2)\r\nDisplay Group Members PRESS m \r\nQuit PRESS q \r\n";
 
-	while (isQuit) {
-//		UserInput(&command);
-//		CheckCommand(&command, &isQuit);
+	 PrintOut(introCommand);
+
+	while (!*isQuit) {
+		char command;
+		UserInput(&command);
+		CheckCommand(command, &isQuit);
 	}
 
 }
 
-void UserInput(char *charInput) {
-	char inputText[] = "Input => ";
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-	HAL_UART_Transmit(&huart3, (uint8_t*) &inputText, strlen(inputText), 1000);
-	HAL_Delay(200);
+void UserInput(char *inputChar) {
+	PrintOut("\tInput =>");
 
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_RXNE)== RESET){}
-	HAL_UART_Receive(&huart3, (uint8_t*) *charInput, 1, 1000);
-	HAL_Delay(200);
+	char input;
+	while(__HAL_UART_GET_FLAG(&huart3, UART_FLAG_RXNE) == RESET){}
+	HAL_UART_Receive(&huart3, (uint8_t*) &input, 1, 1000);
+	Delay();
 
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-	HAL_UART_Transmit(&huart3, (uint8_t*) *charInput, 1, 1000);
-	HAL_Delay(200);
-
-	char newLine[] = "\r\n";
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-	HAL_UART_Transmit(&huart3, (uint8_t*) &newLine, strlen(newLine), 1000);
-	HAL_Delay(200);
-
+	PrintOutLine(&input);
+	*inputChar = input;
 }
 
-void CheckCommand(char inputChar, bool *isQuit) {
+void CheckCommand(char inputChar, int *isQuit) {
 	char memberText[] =
-			"64010989\n\rAttaphon Plianprasert\n\r 64011113\n\rNatchanon Bunyachawaset\n\r641264\n\rVoraphol Promwan\n\r";
+			"64010989\n\rAttaphon Plianprasert\n\r64011113\n\rNatchanon Bunyachawaset\n\r641264\n\rVoraphol Promwan\n\r";
 
 	if (inputChar == '1') {
 //		BlinkLed(1);
 	}
 	else if (inputChar == '2') {
 //		BlinkLed(2);
-
 	}
 	else if (inputChar == 'm') {
-		PrintOutput(&memberText, true);
+		PrintOut(memberText);
 	}
 	else if (inputChar == 'q') {
-		*isQuit = false;
+		*isQuit = 1;
+		PrintOutLine("QUIT");
 	}
-}
+	else {
+		PrintOutLine("Unknown Command");
+	}
 
+}
 
 void BlinkLed(int ledNum){
 	uint16_t pin = ledNum == 1? GPIO_PIN_8 : GPIO_PIN_9;
-	for (int n = 0; n < 3; n++) {
-		HAL_GPIO_WritePin(GPIOB, pin, GPIO_PIN_RESET);
-		HAL_Delay(300);
-		HAL_GPIO_WritePin(GPIOB, pin, GPIO_PIN_SET);
-		HAL_delay(300);
-	}
+//	for (int n = 0; n < 3; n++) {
+//		HAL_GPIO_WritePin(GPIOB, pin, GPIO_PIN_RESET);
+//		HAL_Delay(300);
+//		HAL_GPIO_WritePin(GPIOB, pin, GPIO_PIN_SET);
+//		HAL_delay(300);
+//	}
 }
 
-void WaitingReceiver() {
-	char inputText[] = "Input => ";
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-	HAL_UART_Transmit(&huart3, (uint8_t*) inputText, strlen(inputText), 1000);
-	DefaultDelay();
-
-	char charInput;
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_RXNE)== RESET){}
-	HAL_UART_Receive(&huart3, (uint8_t*) &charInput, 1, 1000);
-	DefaultDelay();
-
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-	HAL_UART_Transmit(&huart3, (uint8_t*) charInput, 1, 1000);
-	DefaultDelay();
-
-	char newLine[] = "\r\n";
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-	HAL_UART_Transmit(&huart3, (uint8_t*) newLine, strlen(newLine), 1000);
-	DefaultDelay();
+void PrintOut(char text[]){
+	while(__HAL_UART_GET_FLAG(&huart3, UART_FLAG_TC) == RESET){}
+	HAL_UART_Transmit(&huart3, (uint8_t*) text, strlen(text), 1000);
+	Delay();
 }
 
-void PrintOutput(char * text[], bool hasNewLine){
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-	HAL_UART_Transmit(&huart3, (uint8_t*) *text, strlen(*text), 1000);
-
-	HAL_Delay(200);
-
-	if (hasNewLine) {
-		char newLine[] = "\r\n";
-		while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-		HAL_UART_Transmit(&huart3, (uint8_t*) &newLine, strlen(newLine), 1000);
-		HAL_Delay(200);
-	}
+void PrintOutLine(char text[]){
+	PrintOut(text);
+	PrintOut("\n\r");
 }
 
-void DefaultDelay() {
-	HAL_Delay(100);
-}
-
-
-void AutoTransmit() {
-	char str[] = "New TEXT\r\n";
-	while(__HAL_UART_GET_FLAG(&huart3,UART_FLAG_TC)==RESET){}
-	HAL_UART_Transmit(&huart3, (uint8_t*) str, strlen(str), 1000);
-	DefaultDelay();
+void Delay() {
+	HAL_Delay(10);
 }
 
 /**

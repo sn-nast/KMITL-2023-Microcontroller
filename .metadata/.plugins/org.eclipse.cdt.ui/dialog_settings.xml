@@ -3,17 +3,31 @@
 	<section name="completion_proposal_size">
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
+		<item key="size.width" value="682"/>
+		<item key="size.height" value="617"/>
+		<item key="location.x" value="596"/>
+		<item key="location.y" value="129"/>
 	</section>
 	<section name="RefactoringWizard.preview">
 		<item key="width" value="600"/>
 		<item key="height" value="400"/>
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration.internal">
-		<item key="size.width" value="709"/>
+		<item key="size.width" value="1059"/>
 		<item key="size.height" value="180"/>
 	</section>
 	<section name="RenameInformationPopup">
 	</section>
 	<section name="CRenameRefactoringInputPage">
+		<item key="scope" value="3"/>
+		<item key="workingset" value=""/>
+		<item key="references_inv" value="false"/>
+		<item key="comment" value="false"/>
+		<item key="macroDefinition" value="false"/>
+		<item key="exhausiveFileSearch" value="false"/>
+	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item key="askReindex" value="true"/>
+		<item key="askReindex.detail" value="0"/>
 	</section>
 </section>

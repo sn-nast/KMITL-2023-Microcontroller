@@ -1,67 +1,83 @@
-01:16:34 **** Incremental Build of configuration Debug for project Lab03 ****
+14:59:23 **** Incremental Build of configuration Debug for project Lab03 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:102:11: warning: implicit declaration of function 'WaitingReceiver' [-Wimplicit-function-declaration]
-  102 |           WaitingReceiver();
-      |           ^~~~~~~~~~~~~~~
-../Core/Src/main.c: In function 'MenuCommand':
-../Core/Src/main.c:118:9: warning: implicit declaration of function 'PrintOutput' [-Wimplicit-function-declaration]
-  118 |         PrintOutput(&IntroCommand, true);
-      |         ^~~~~~~~~~~
-../Core/Src/main.c:112:14: warning: unused variable 'command' [-Wunused-variable]
-  112 |         char command;
-      |              ^~~~~~~
-../Core/Src/main.c: In function 'UserInput':
-../Core/Src/main.c:134:35: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-  134 |         HAL_UART_Receive(&huart3, (uint8_t*) *charInput, 1, 1000);
-      |                                   ^
-../Core/Src/main.c:138:36: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-  138 |         HAL_UART_Transmit(&huart3, (uint8_t*) *charInput, 1, 1000);
-      |                                    ^
-../Core/Src/main.c: In function 'BlinkLed':
-../Core/Src/main.c:174:17: warning: implicit declaration of function 'HAL_delay'; did you mean 'HAL_Delay'? [-Wimplicit-function-declaration]
-  174 |                 HAL_delay(300);
-      |                 ^~~~~~~~~
-      |                 HAL_Delay
+../Core/Src/main.c:103:19: warning: implicit declaration of function 'MenuCommand' [-Wimplicit-function-declaration]
+  103 |                   MenuCommand(&isQuit2);
+      |                   ^~~~~~~~~~~
 ../Core/Src/main.c: At top level:
-../Core/Src/main.c:178:6: warning: conflicting types for 'WaitingReceiver'; have 'void()'
-  178 | void WaitingReceiver() {
-      |      ^~~~~~~~~~~~~~~
-../Core/Src/main.c:102:11: note: previous implicit declaration of 'WaitingReceiver' with type 'void()'
-  102 |           WaitingReceiver();
-      |           ^~~~~~~~~~~~~~~
-../Core/Src/main.c: In function 'WaitingReceiver':
-../Core/Src/main.c:182:9: warning: implicit declaration of function 'DefaultDelay' [-Wimplicit-function-declaration]
-  182 |         DefaultDelay();
-      |         ^~~~~~~~~~~~
-../Core/Src/main.c:190:36: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-  190 |         HAL_UART_Transmit(&huart3, (uint8_t*) charInput, 1, 1000);
-      |                                    ^
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:199:6: warning: conflicting types for 'PrintOutput'; have 'void(char **, _Bool)'
-  199 | void PrintOutput(char * text[], bool hasNewLine){
+../Core/Src/main.c:111:6: warning: conflicting types for 'MenuCommand'; have 'void(int *)'
+  111 | void MenuCommand(int *isQuit) {
       |      ^~~~~~~~~~~
-../Core/Src/main.c:118:9: note: previous implicit declaration of 'PrintOutput' with type 'void(char **, _Bool)'
-  118 |         PrintOutput(&IntroCommand, true);
-      |         ^~~~~~~~~~~
-../Core/Src/main.c:213:6: warning: conflicting types for 'DefaultDelay'; have 'void()'
-  213 | void DefaultDelay() {
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:182:9: note: previous implicit declaration of 'DefaultDelay' with type 'void()'
-  182 |         DefaultDelay();
+../Core/Src/main.c:103:19: note: previous implicit declaration of 'MenuCommand' with type 'void(int *)'
+  103 |                   MenuCommand(&isQuit2);
+      |                   ^~~~~~~~~~~
+../Core/Src/main.c: In function 'MenuCommand':
+../Core/Src/main.c:116:10: warning: implicit declaration of function 'PrintOut' [-Wimplicit-function-declaration]
+  116 |          PrintOut(introCommand);
+      |          ^~~~~~~~
+../Core/Src/main.c:120:17: warning: implicit declaration of function 'UserInput' [-Wimplicit-function-declaration]
+  120 |                 UserInput(&command);
+      |                 ^~~~~~~~~
+../Core/Src/main.c:121:17: warning: implicit declaration of function 'CheckCommand'; did you mean 'MenuCommand'? [-Wimplicit-function-declaration]
+  121 |                 CheckCommand(command, &isQuit);
+      |                 ^~~~~~~~~~~~
+      |                 MenuCommand
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:126:6: warning: conflicting types for 'UserInput'; have 'void(char *)'
+  126 | void UserInput(char *inputChar) {
+      |      ^~~~~~~~~
+../Core/Src/main.c:120:17: note: previous implicit declaration of 'UserInput' with type 'void(char *)'
+  120 |                 UserInput(&command);
+      |                 ^~~~~~~~~
+../Core/Src/main.c: In function 'UserInput':
+../Core/Src/main.c:132:9: warning: implicit declaration of function 'Delay' [-Wimplicit-function-declaration]
+  132 |         Delay();
+      |         ^~~~~
+../Core/Src/main.c:134:9: warning: implicit declaration of function 'PrintOutLine' [-Wimplicit-function-declaration]
+  134 |         PrintOutLine(&input);
       |         ^~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:138:6: warning: conflicting types for 'CheckCommand'; have 'void(char,  int *)'
+  138 | void CheckCommand(char inputChar, int *isQuit) {
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:121:17: note: previous implicit declaration of 'CheckCommand' with type 'void(char,  int *)'
+  121 |                 CheckCommand(command, &isQuit);
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'BlinkLed':
+../Core/Src/main.c:162:18: warning: unused variable 'pin' [-Wunused-variable]
+  162 |         uint16_t pin = ledNum == 1? GPIO_PIN_8 : GPIO_PIN_9;
+      |                  ^~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:171:6: warning: conflicting types for 'PrintOut'; have 'void(char *)'
+  171 | void PrintOut(char text[]){
+      |      ^~~~~~~~
+../Core/Src/main.c:116:10: note: previous implicit declaration of 'PrintOut' with type 'void(char *)'
+  116 |          PrintOut(introCommand);
+      |          ^~~~~~~~
+../Core/Src/main.c:177:6: warning: conflicting types for 'PrintOutLine'; have 'void(char *)'
+  177 | void PrintOutLine(char text[]){
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:134:9: note: previous implicit declaration of 'PrintOutLine' with type 'void(char *)'
+  134 |         PrintOutLine(&input);
+      |         ^~~~~~~~~~~~
+../Core/Src/main.c:182:6: warning: conflicting types for 'Delay'; have 'void()'
+  182 | void Delay() {
+      |      ^~~~~
+../Core/Src/main.c:132:9: note: previous implicit declaration of 'Delay' with type 'void()'
+  132 |         Delay();
+      |         ^~~~~
 arm-none-eabi-gcc -o "Lab03.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab03\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab03.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Lab03.elf
  
 arm-none-eabi-size   Lab03.elf 
 arm-none-eabi-objdump -h -S  Lab03.elf  > "Lab03.list"
    text	   data	    bss	    dec	    hex	filename
-  11860	     20	   1708	  13588	   3514	Lab03.elf
+  12064	     20	   1708	  13792	   35e0	Lab03.elf
 Finished building: default.size.stdout
  
 Finished building: Lab03.list
  
 
-01:16:36 Build Finished. 0 errors, 11 warnings. (took 2s.196ms)
+14:59:25 Build Finished. 0 errors, 13 warnings. (took 1s.492ms)
 
