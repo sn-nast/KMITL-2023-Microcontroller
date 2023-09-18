@@ -58,16 +58,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc) {
-	uint32_t adcVal;
-	char adcResult[30];
 
-	HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_7);
-	adcVal = HAL_ADC_GetValue(hadc);
-
-	sprintf(adcResult, "ADC_Val = 0x%010X\n\r", adcVal);
-	printOut(adcResult);
-}
 /* USER CODE END 0 */
 
 /**
