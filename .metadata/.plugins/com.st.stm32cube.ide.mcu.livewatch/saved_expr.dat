@@ -1,17 +1,8 @@
-isSendable
-rxData[0]
-receivedMessage
-receivedMessage[0]
-receivedIndex
-receivedMessage[0]
-receivedMessage[1]
-receiveText[0]
-receiveText[1]
-receiveText[2]
-receiveText
-isQuit
-receivedMessage
-coUserName
-isQuit
-isSendable
-HAL_UART_Init(&huart3) == HAL_OK
+red.pwm
+red.pinGroup -> IDR
+red.pinGroup -> IDR & red.pin
+(red.pinGroup -> IDR & red.pin) >> 10
+pwm
+pwmR
+pwmG
+pwmB
