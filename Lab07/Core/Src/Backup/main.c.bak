@@ -48,6 +48,10 @@
 
 /* USER CODE BEGIN PV */
 uint8_t pwm;
+uint8_t pwmR;
+uint8_t pwmG;
+uint8_t pwmB;
+
 float redIntensity = 0.0;
 float greenIntensity = 0.0;
 float blueIntensity = 0.0;
@@ -274,7 +278,7 @@ void startPwmRgb()
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	float dutyCycle = 0.0;
+	float dutyCycle = 0.5;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -301,9 +305,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
   dutyCycle = 0.5;
   char input;
-  initColorType();
+//  initColorType();
 //  startPwmRgb();
-  startPwmRgb2();
+//  startPwmRgb2();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -313,21 +317,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  generatePwm();
+	  generatePwm();
 //	  generatePwm2(dutyCycle);
-	  receiveUserInput(&input);
-	  controlRgb2(&input);
-		HAL_TIM_PWM_Start(red.timer, red.timerChannel);
-		HAL_TIM_PWM_Start(green.timer, green.timerChannel);
-		HAL_TIM_PWM_Start(blue.timer, blue.timerChannel);
-
-		HAL_Delay(100);
-
-		HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
-		red.pwm = (red.pinGroup -> IDR & red.pin) >> 10;
-		green.pwm = (green.pinGroup -> IDR & green.pin) >> 10;
-		blue.pwm = (blue.pinGroup -> IDR & blue.pin) >> 10;
 //	  controlRgb(&input);
+	  receiveUserInput(&input);
+//	  controlRgb2(&input);
 
   }
   /* USER CODE END 3 */

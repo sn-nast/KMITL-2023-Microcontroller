@@ -36699,3 +36699,557 @@ Finished building: default.size.stdout
  
 Finished building: Lab07.list
  
+19:10:10 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:307:8: warning: unused variable 'input' [-Wunused-variable]
+  307 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:281:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  281 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  38504	    476	   2196	  41176	   a0d8	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+19:11:15 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:307:8: warning: unused variable 'input' [-Wunused-variable]
+  307 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:281:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  281 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  38768	    476	   2196	  41440	   a1e0	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+19:44:18 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:281:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  281 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  39640	    476	   2196	  42312	   a548	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+19:46:58 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/usart.o"
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  39640	    476	   2196	  42312	   a548	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+19:54:51 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:274:1: error: number of arguments doesn't match prototype
+  274 | {
+      | ^
+In file included from ../Core/Inc/stm32f7xx_hal_conf.h:415,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:1574:6: error: prototype declaration
+ 1574 | void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
+      |      ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:314:8: warning: unused variable 'input' [-Wunused-variable]
+  314 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:288:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  288 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+make: *** [Core/Src/subdir.mk:43: Core/Src/main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+19:55:23 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:314:8: warning: unused variable 'input' [-Wunused-variable]
+  314 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:288:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  288 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  38768	    476	   2196	  41440	   a1e0	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+19:58:29 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:277:14: warning: unused variable 'input' [-Wunused-variable]
+  277 |         char input;
+      |              ^~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:320:32: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  320 |   HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
+      |                                ^
+../Core/Src/main.c:316:8: warning: unused variable 'input' [-Wunused-variable]
+  316 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:290:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  290 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  40936	    476	   2196	  43608	   aa58	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+19:58:42 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-size   Lab07.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40936	    476	   2196	  43608	   aa58	Lab07.elf
+Finished building: default.size.stdout
+ 
+19:59:43 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:322:32: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  322 |   HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
+      |                                ^
+../Core/Src/main.c:318:8: warning: unused variable 'input' [-Wunused-variable]
+  318 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:292:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  292 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  40504	    476	   2196	  43176	   a8a8	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:01:24 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:318:8: warning: unused variable 'input' [-Wunused-variable]
+  318 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:292:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  292 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  40496	    476	   2204	  43176	   a8a8	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:02:30 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:319:8: warning: unused variable 'input' [-Wunused-variable]
+  319 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:293:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  293 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  40512	    476	   2204	  43192	   a8b8	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:05:28 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:278:26: warning: passing argument 1 of 'receiveUserInput' from incompatible pointer type [-Wincompatible-pointer-types]
+  278 |         receiveUserInput(&rxInput);
+      |                          ^~~~~~~~
+      |                          |
+      |                          char (*)[5]
+../Core/Src/main.c:112:29: note: expected 'char *' but argument is of type 'char (*)[5]'
+  112 | void receiveUserInput(char *rxData)
+      |                       ~~~~~~^~~~~~
+../Core/Src/main.c:280:30: warning: format '%c' expects argument of type 'int', but argument 3 has type 'char *' [-Wformat=]
+  280 |         sprintf(text, "Get: %c", rxInput);
+      |                             ~^   ~~~~~~~
+      |                              |   |
+      |                              int char *
+      |                             %s
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:322:8: warning: unused variable 'input' [-Wunused-variable]
+  322 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:296:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  296 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:280:29: warning: '%c' directive writing 1 byte into a region of size 0 [-Wformat-overflow=]
+  280 |         sprintf(text, "Get: %c", rxInput);
+      |                             ^~   ~~~~~~~
+../Core/Src/main.c:280:9: note: 'sprintf' output 7 bytes into a destination of size 5
+  280 |         sprintf(text, "Get: %c", rxInput);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41008	    476	   2204	  43688	   aaa8	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:07:54 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:279:38: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  279 |         HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
+      |                                      ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:321:32: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+  321 |   HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
+      |                                ^
+../Core/Src/main.c:317:8: warning: unused variable 'input' [-Wunused-variable]
+  317 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:291:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  291 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  40976	    476	   2196	  43648	   aa80	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:08:28 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:278:26: warning: passing argument 1 of 'receiveUserInput' from incompatible pointer type [-Wincompatible-pointer-types]
+  278 |         receiveUserInput(&rxInput);
+      |                          ^~~~~~~~
+      |                          |
+      |                          char (*)[5]
+../Core/Src/main.c:112:29: note: expected 'char *' but argument is of type 'char (*)[5]'
+  112 | void receiveUserInput(char *rxData)
+      |                       ~~~~~~^~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:317:8: warning: unused variable 'input' [-Wunused-variable]
+  317 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:291:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  291 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  40968	    476	   2204	  43648	   aa80	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:09:44 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:278:26: warning: passing argument 1 of 'receiveUserInput' from incompatible pointer type [-Wincompatible-pointer-types]
+  278 |         receiveUserInput(&rxInput);
+      |                          ^~~~~~~~
+      |                          |
+      |                          char (*)[5]
+../Core/Src/main.c:112:29: note: expected 'char *' but argument is of type 'char (*)[5]'
+  112 | void receiveUserInput(char *rxData)
+      |                       ~~~~~~^~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:317:8: warning: unused variable 'input' [-Wunused-variable]
+  317 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:291:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  291 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41592	    476	   2276	  44344	   ad38	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:09:59 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:278:26: warning: passing argument 1 of 'receiveUserInput' from incompatible pointer type [-Wincompatible-pointer-types]
+  278 |         receiveUserInput(&rxInput);
+      |                          ^~~~~~~~
+      |                          |
+      |                          char (*)[5]
+../Core/Src/main.c:112:29: note: expected 'char *' but argument is of type 'char (*)[5]'
+  112 | void receiveUserInput(char *rxData)
+      |                       ~~~~~~^~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:317:8: warning: unused variable 'input' [-Wunused-variable]
+  317 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:291:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  291 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41752	    476	   2276	  44504	   add8	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:10:51 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:277:26: warning: passing argument 1 of 'receiveUserInput' from incompatible pointer type [-Wincompatible-pointer-types]
+  277 |         receiveUserInput(&rxInput);
+      |                          ^~~~~~~~
+      |                          |
+      |                          char (*)[5]
+../Core/Src/main.c:112:29: note: expected 'char *' but argument is of type 'char (*)[5]'
+  112 | void receiveUserInput(char *rxData)
+      |                       ~~~~~~^~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:316:8: warning: unused variable 'input' [-Wunused-variable]
+  316 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:290:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  290 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41728	    476	   2276	  44480	   adc0	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:12:25 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:277:26: warning: passing argument 1 of 'receiveUserInput' from incompatible pointer type [-Wincompatible-pointer-types]
+  277 |         receiveUserInput(&rxInput);
+      |                          ^~~~~~~~
+      |                          |
+      |                          char (*)[5]
+../Core/Src/main.c:112:29: note: expected 'char *' but argument is of type 'char (*)[5]'
+  112 | void receiveUserInput(char *rxData)
+      |                       ~~~~~~^~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:316:8: warning: unused variable 'input' [-Wunused-variable]
+  316 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:290:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  290 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41776	    476	   2276	  44528	   adf0	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:15:16 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:278:22: warning: passing argument 1 of 'printOutLine' from incompatible pointer type [-Wincompatible-pointer-types]
+  278 |         printOutLine(&rxInput);
+      |                      ^~~~~~~~
+      |                      |
+      |                      char (*)[5]
+../Core/Src/main.c:106:32: note: expected 'const char *' but argument is of type 'char (*)[5]'
+  106 | void printOutLine(const char * text)
+      |                   ~~~~~~~~~~~~~^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:318:8: warning: unused variable 'input' [-Wunused-variable]
+  318 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:292:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  292 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41352	    476	   2276	  44104	   ac48	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:17:58 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:316:8: warning: unused variable 'input' [-Wunused-variable]
+  316 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:290:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  290 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41344	    476	   2276	  44096	   ac40	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:22:12 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:323:8: warning: unused variable 'input' [-Wunused-variable]
+  323 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:297:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  297 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41440	    476	   2276	  44192	   aca0	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:28:50 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:329:8: warning: unused variable 'input' [-Wunused-variable]
+  329 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:302:15: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  302 |         float dutyCycle = 0.5;
+      |               ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
+arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
+   text	   data	    bss	    dec	    hex	filename
+  41488	    476	   2276	  44240	   acd0	Lab07.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab07.list
+ 
+20:32:18 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-size   Lab07.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41488	    476	   2276	  44240	   acd0	Lab07.elf
+Finished building: default.size.stdout
+ 
+20:32:19 **** Incremental Build of configuration Debug for project SpecialCase-01 ****
+make -j8 all 
+arm-none-eabi-size   SpecialCase-01.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19804	    108	   2452	  22364	   575c	SpecialCase-01.elf
+Finished building: default.size.stdout
+ 
+20:32:27 **** Incremental Build of configuration Debug for project Lab07 ****
+make -j8 all 
+arm-none-eabi-size   Lab07.elf 
+   text	   data	    bss	    dec	    hex	filename
+  41488	    476	   2276	  44240	   acd0	Lab07.elf
+Finished building: default.size.stdout
+ 

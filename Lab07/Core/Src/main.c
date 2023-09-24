@@ -56,6 +56,8 @@ float redIntensity = 0.0;
 float greenIntensity = 0.0;
 float blueIntensity = 0.0;
 
+char rxInput[5];
+
 typedef struct _Color
 {
 	TIM_HandleTypeDef * timer;
@@ -248,16 +250,6 @@ void initColorType()
 	blue.pwm = 0;
 }
 
-void startPwmRgb2()
-{
-//	HAL_TIM_PWM_Start(red.timer, red.timerChannel);
-//	HAL_TIM_PWM_Start(green.timer, green.timerChannel);
-//	HAL_TIM_PWM_Start(blue.timer, blue.timerChannel);
-
-	addRedIntensity(red.intensity);
-	addGreenIntensity(green.intensity);
-	addBlueIntensity(blue.intensity);
-}
 
 void startPwmRgb()
 {
@@ -268,6 +260,35 @@ void startPwmRgb()
 	addRedIntensity(redIntensity);
 	addGreenIntensity(greenIntensity);
 	addBlueIntensity(blueIntensity);
+}
+
+void startPwmRgb2()
+{
+	HAL_TIM_PWM_Start(red.timer, red.timerChannel);
+	HAL_TIM_PWM_Start(green.timer, green.timerChannel);
+	HAL_TIM_PWM_Start(blue.timer, blue.timerChannel);
+
+	addRedIntensity(red.intensity);
+	addGreenIntensity(green.intensity);
+	addBlueIntensity(blue.intensity);
+}
+void updatePwmInColor()
+{
+	HAL_Delay(100);
+	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
+	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
+	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
+
+	red.pwm = (red.pinGroup->IDR & red.pin) >> 10;
+	green.pwm = (green.pinGroup->IDR & green.pin) >> 10;
+	blue.pwm = (blue.pinGroup->IDR & blue.pin) >> 10;
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	printOut("INTERRUPT => ");
+	controlRgb2(&rxInput[0]);
+	HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
 }
 /* USER CODE END 0 */
 
@@ -303,11 +324,17 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+  //Q1-2
   dutyCycle = 0.5;
   char input;
-  initColorType();
 //  startPwmRgb();
-  startPwmRgb2();
+
+  // Struct
+  initColorType();
+//  startPwmRgb2();
+
+  // Interrupt
+  HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -315,14 +342,18 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  startPwmRgb2();
     /* USER CODE BEGIN 3 */
-//	  generatePwm();
+	  // Q1-2
+	  generatePwm();
 //	  generatePwm2(dutyCycle);
-//	  controlRgb(&input);
-	  receiveUserInput(&input);
-	  controlRgb2(&input);
 
+	  // Polling
+//	  receiveUserInput(&input);
+//	  controlRgb(&input);
+//	  controlRgb2(&input);
+
+	  updatePwmInColor();
   }
   /* USER CODE END 3 */
 }
