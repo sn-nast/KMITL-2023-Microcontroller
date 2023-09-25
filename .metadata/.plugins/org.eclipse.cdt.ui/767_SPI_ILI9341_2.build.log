@@ -1,0 +1,10 @@
+15:39:38 **** Incremental Build of configuration Debug for project 767_SPI_ILI9341_2 ****
+make -j8 all 
+arm-none-eabi-size   767_SPI_ILI9341_2.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 192648	    480	   2232	 195360	  2fb20	767_SPI_ILI9341_2.elf
+Finished building: default.size.stdout
+ 
+
+15:39:38 Build Finished. 0 errors, 0 warnings. (took 641ms)
+
