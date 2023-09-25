@@ -1,0 +1,11 @@
+{
+    "stm32-for-vscode.openOCDPath": false,
+    "stm32-for-vscode.makePath": false,
+    "stm32-for-vscode.armToolchainPath": false,
+    "files.associations": {
+        "*.rmd": "markdown",
+        "ili9341_gfx.h": "c",
+        "ili9341_stm32_driver.h": "c",
+        "ili9341_touchscreen.h": "c"
+    }
+}

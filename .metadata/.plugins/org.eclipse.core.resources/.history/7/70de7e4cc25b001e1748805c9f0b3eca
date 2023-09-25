@@ -1,0 +1,37 @@
+#ifndef INC_UTILITIES_MY_LCD_H_
+#define INC_UTILITIES_MY_LCD_H_
+
+#include <stdio.h>
+#include <stdint.h>
+
+typedef struct
+{
+	uint8_t x;
+	uint8_t y;
+} Point;
+
+typedef struct
+{
+	uint16_t x0;
+	uint16_t y0;
+	uint16_t x1;
+	uint16_t y1;
+} Rectangle;
+
+void fillScreenColor(uint16_t color);
+
+void setRotation(uint8_t rotation);
+
+void drawText(const char *text, uint8_t posX, uint8_t posY, uint16_t size);
+
+void drawTextAtPoint(const char *text, Point position, uint16_t size);
+
+void drawHollowRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
+
+void drawHollowRectangleByCoord(Rectangle rectangle, uint16_t color);
+
+void drawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
+
+void drawFilledRectangleByCoord(Rectangle rectangle, uint16_t colore);
+
+#endif /* INC_UTILITIES_MY_LCD_H_ */

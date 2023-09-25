@@ -1,0 +1,25 @@
+#include "Utilities/my_lcd.h"
+
+#include "ILI9341_Touchscreen.h"
+#include "ILI9341_STM32_Driver.h"
+#include "ILI9341_GFX.h"
+
+void fillScreenColor(uint16_t color)
+{
+	ILI9341_Fill_Screen(color);
+}
+
+void setRotation(uint8_t rotation)
+{
+	ILI9341_Set_Rotation(rotation);
+}
+
+void drawText(const char* text, uint8_t posX, uint8_t posY, uint16_t size)
+{
+	ILI9341_Draw_Text(text, posX, posY, BLACK, size, WHITE);
+}
+
+void drawTextAtPoint(const char* text, Point position, uint16_t size)
+{
+	drawText(text, position.x, position.y, size);
+}

@@ -1,0 +1,12 @@
+../Drivers/CMSIS/Include/core_cm7.h:2229:22:SCB_EnableICache	1
+../Drivers/CMSIS/Include/core_cm7.h:2281:22:SCB_EnableDCache	3
+../Core/Src/main.c:69:6:performanceTest	3
+../Core/Src/main.c:112:6:getTemperature	1
+../Core/Src/main.c:117:6:getTemperatureString	1
+../Core/Src/main.c:122:6:getHumidity	1
+../Core/Src/main.c:127:6:getHumidityString	1
+../Core/Src/main.c:132:6:drawHueCircle	1
+../Core/Src/main.c:138:6:drawRgbInfo	1
+../Core/Src/main.c:164:5:main	1
+../Core/Src/main.c:245:6:SystemClock_Config	4
+../Core/Src/main.c:307:6:Error_Handler	1

@@ -1,0 +1,12 @@
+../Drivers/CMSIS/Include/core_cm7.h:2229:22:SCB_EnableICache	4	static,ignoring_inline_asm
+../Drivers/CMSIS/Include/core_cm7.h:2281:22:SCB_EnableDCache	24	static,ignoring_inline_asm
+../Core/Src/main.c:69:6:performanceTest	96	static
+../Core/Src/main.c:112:6:getTemperature	16	static
+../Core/Src/main.c:117:6:getTemperatureString	24	static
+../Core/Src/main.c:122:6:getHumidity	16	static
+../Core/Src/main.c:127:6:getHumidityString	24	static
+../Core/Src/main.c:132:6:drawHueCircle	24	static
+../Core/Src/main.c:138:6:drawRgbInfo	56	static
+../Core/Src/main.c:164:5:main	64	static
+../Core/Src/main.c:245:6:SystemClock_Config	88	static
+../Core/Src/main.c:307:6:Error_Handler	4	static,ignoring_inline_asm

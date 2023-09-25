@@ -1,0 +1,10 @@
+#include "my_lcd.h"
+
+#include "ILI9341_Touchscreen.h"
+#include "ILI9341_STM32_Driver.h"
+#include "ILI9341_GFX.h"
+
+void fillScreenColor(uint16_t color)
+{
+	ILI9341_Fill_Screen(color);
+}
