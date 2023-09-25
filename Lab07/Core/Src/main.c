@@ -88,7 +88,7 @@ void generatePwm()
 	pwm = (GPIOB->IDR & GPIO_PIN_10) >> 10;
 }
 
-void generatePwm2(float dutyCycle)
+void generatePwm_s(float dutyCycle)
 {
 	htim2.Instance -> CCR3 = (10000-1) * dutyCycle;
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
@@ -117,17 +117,16 @@ void receiveUserInput(char *rxData)
 	printOutLine(rxData);
 }
 
-void addRedIntensity(float dutyCycle)
-{
-	htim3.Instance -> CCR1 = (10000-1) * dutyCycle;
+void setRedIntensity(float dutyCycle) {
+	htim3.Instance->CCR1 = (10000 - 1) * dutyCycle;
 }
 
-void addGreenIntensity(float dutyCycle)
+void setGreenIntensity(float dutyCycle)
 {
 	htim3.Instance -> CCR2 = (10000-1) * dutyCycle;
 }
 
-void addBlueIntensity(float dutyCycle)
+void setBlueIntensity(float dutyCycle)
 {
 	htim3.Instance -> CCR3 = (10000-1) * dutyCycle;
 }
@@ -149,7 +148,7 @@ void controlRgb(char *input)
 		{
 			redIntensity += STEP_SCALE;
 		}
-		addRedIntensity(redIntensity);
+		setRedIntensity(redIntensity);
 	} else if (*input == 'g' || *input == 'G')
 	{
 		if (greenIntensity >= MAX_SCALE)
@@ -159,7 +158,7 @@ void controlRgb(char *input)
 		{
 			greenIntensity += STEP_SCALE;
 		}
-		addGreenIntensity(greenIntensity);
+		setGreenIntensity(greenIntensity);
 	} else if (*input == 'b' || *input == 'B')
 	{
 		if (blueIntensity >= MAX_SCALE)
@@ -169,7 +168,7 @@ void controlRgb(char *input)
 		{
 			blueIntensity += STEP_SCALE;
 		}
-		addBlueIntensity(blueIntensity);
+		setBlueIntensity(blueIntensity);
 	} else {
 		printOutLine("\t\t----SKIP----");
 	}
@@ -179,7 +178,7 @@ void controlRgb(char *input)
 	printOutLine(text);
 }
 
-void controlRgb2(char *input)
+void controlRgb_s(char *input)
 {
 	const float MAX_SCALE = 1.0;
 	const float STEP_SCALE = 0.1;
@@ -196,7 +195,7 @@ void controlRgb2(char *input)
 		{
 			red.intensity += STEP_SCALE;
 		}
-		addRedIntensity(red.intensity);
+		setRedIntensity(red.intensity);
 	} else if (*input == 'g' || *input == 'G')
 	{
 		if (green.intensity >= MAX_SCALE)
@@ -206,7 +205,7 @@ void controlRgb2(char *input)
 		{
 			green.intensity += STEP_SCALE;
 		}
-		addGreenIntensity(green.intensity);
+		setGreenIntensity(green.intensity);
 	} else if (*input == 'b' || *input == 'B')
 	{
 		if (blue.intensity >= MAX_SCALE)
@@ -216,7 +215,7 @@ void controlRgb2(char *input)
 		{
 			blue.intensity += STEP_SCALE;
 		}
-		addBlueIntensity(blue.intensity);
+		setBlueIntensity(blue.intensity);
 	} else {
 		printOutLine("\t\t----SKIP----");
 	}
@@ -226,7 +225,7 @@ void controlRgb2(char *input)
 	printOutLine(text);
 }
 
-void initColorType()
+void setColorInfo()
 {
 	red.timer = &htim3;
 	red.timerChannel = TIM_CHANNEL_1;
@@ -257,24 +256,25 @@ void startPwmRgb()
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
 
-	addRedIntensity(redIntensity);
-	addGreenIntensity(greenIntensity);
-	addBlueIntensity(blueIntensity);
+	setRedIntensity(redIntensity);
+	setGreenIntensity(greenIntensity);
+	setBlueIntensity(blueIntensity);
 }
 
-void startPwmRgb2()
+void startPwmRgb_s()
 {
 	HAL_TIM_PWM_Start(red.timer, red.timerChannel);
 	HAL_TIM_PWM_Start(green.timer, green.timerChannel);
 	HAL_TIM_PWM_Start(blue.timer, blue.timerChannel);
 
-	addRedIntensity(red.intensity);
-	addGreenIntensity(green.intensity);
-	addBlueIntensity(blue.intensity);
+	setRedIntensity(red.intensity);
+	setGreenIntensity(green.intensity);
+	setBlueIntensity(blue.intensity);
 }
-void updatePwmInColor()
+
+void updatePwmRgb_s()
 {
-	HAL_Delay(100);
+//	HAL_Delay(100);
 	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
 	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
 	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
@@ -287,7 +287,7 @@ void updatePwmInColor()
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	printOut("INTERRUPT => ");
-	controlRgb2(&rxInput[0]);
+	controlRgb_s(&rxInput[0]);
 	HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
 }
 /* USER CODE END 0 */
@@ -299,7 +299,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	float dutyCycle = 0.5;
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -324,14 +324,16 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+
   //Q1-2
+  float dutyCycle = 0.5;
   dutyCycle = 0.5;
   char input;
+
 //  startPwmRgb();
 
   // Struct
-  initColorType();
-//  startPwmRgb2();
+  setColorInfo();
 
   // Interrupt
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
@@ -342,8 +344,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  startPwmRgb2();
+
     /* USER CODE BEGIN 3 */
+	  startPwmRgb_s();
 	  // Q1-2
 	  generatePwm();
 //	  generatePwm2(dutyCycle);

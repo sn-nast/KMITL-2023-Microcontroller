@@ -1,0 +1,5 @@
+void printOut(char *str);
+
+void printOutLine(const char *text);
+
+void receiveUserInput(char *rxData);
