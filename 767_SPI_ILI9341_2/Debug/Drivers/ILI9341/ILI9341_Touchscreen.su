@@ -1,0 +1,4 @@
+../Drivers/ILI9341/ILI9341_Touchscreen.c:85:10:TP_Read	16	static
+../Drivers/ILI9341/ILI9341_Touchscreen.c:106:6:TP_Write	24	static
+../Drivers/ILI9341/ILI9341_Touchscreen.c:126:9:TP_Read_Coordinates	48	static
+../Drivers/ILI9341/ILI9341_Touchscreen.c:185:9:TP_Touchpad_Pressed	8	static

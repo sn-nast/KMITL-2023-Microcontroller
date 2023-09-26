@@ -19,3 +19,5 @@
 ../Core/Src/Utilities/my_lcd.c:98:6:drawImage	1
 ../Core/Src/Utilities/my_lcd.c:104:10:getCircleEdgeX	1
 ../Core/Src/Utilities/my_lcd.c:109:10:getCircleEdgeY	1
+../Core/Src/Utilities/my_lcd.c:114:10:getCircleEdgeXNegative	1
+../Core/Src/Utilities/my_lcd.c:120:10:getCircleEdgeYNegative	1

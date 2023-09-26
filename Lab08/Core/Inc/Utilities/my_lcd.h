@@ -58,5 +58,7 @@ void drawImage(const char *imageArray, uint8_t orientation);
 
 uint16_t getCircleEdgeX(Circle circle);
 uint16_t getCircleEdgeY(Circle circle);
+uint16_t getCircleEdgeXNegative(Circle circle);
+uint16_t getCircleEdgeYNegative(Circle circle);
 
 #endif /* INC_UTILITIES_MY_LCD_H_ */

@@ -110,3 +110,14 @@ uint16_t getCircleEdgeY(Circle circle)
 {
 	return circle.y + circle.radius;
 }
+
+uint16_t getCircleEdgeXNegative(Circle circle)
+{
+	return circle.x - circle.radius;
+}
+
+
+uint16_t getCircleEdgeYNegative(Circle circle)
+{
+	return circle.y - circle.radius;
+}
