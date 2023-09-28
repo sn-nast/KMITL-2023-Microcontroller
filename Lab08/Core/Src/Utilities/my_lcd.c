@@ -9,6 +9,12 @@ void fillScreenColor(uint16_t color)
 	ILI9341_Fill_Screen(color);
 }
 
+void clearScreenArea(Rectangle area, uint16_t color)
+{
+	ILI9341_Set_Address(area.x0, area.y0, area.x1, area.y1);
+	ILI9341_Draw_Colour_Burst(color, (area.x1 - area.x0) * (area.y1 - area.y0));
+}
+
 void setRotation(uint8_t rotation)
 {
 	ILI9341_Set_Rotation(rotation);

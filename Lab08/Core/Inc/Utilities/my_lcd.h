@@ -29,6 +29,7 @@ typedef struct _Circle
 } Circle;
 
 void fillScreenColor(uint16_t color);
+void clearScreenArea(Rectangle area, uint16_t color);
 
 void setRotation(uint8_t rotation);
 

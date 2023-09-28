@@ -84,11 +84,12 @@ void generatePwm()
 {
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
 	HAL_Delay(100);
-	HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_3);
+	//HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_3);
+//	printOutLine("ABC");
 	pwm = (GPIOB->IDR & GPIO_PIN_10) >> 10;
 }
 
-void generatePwm_s(float dutyCycle)
+void generatePwm2(float dutyCycle)
 {
 	htim2.Instance -> CCR3 = (10000-1) * dutyCycle;
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
@@ -279,9 +280,9 @@ void updatePwmRgb_s()
 	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
 	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
 
-	red.pwm = (red.pinGroup->IDR & red.pin) >> 10;
-	green.pwm = (green.pinGroup->IDR & green.pin) >> 10;
-	blue.pwm = (blue.pinGroup->IDR & blue.pin) >> 10;
+	red.pwm = (red.pinGroup->IDR & red.pin) >> 6;
+	green.pwm = (green.pinGroup->IDR & green.pin) >> 7;
+	blue.pwm = (blue.pinGroup->IDR & blue.pin) >> 8;
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
@@ -333,7 +334,7 @@ int main(void)
 //  startPwmRgb();
 
   // Struct
-  setColorInfo();
+//  setColorInfo();
 
   // Interrupt
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
@@ -349,7 +350,9 @@ int main(void)
 //	  startPwmRgb_s();
 	  // Q1-2
 	  generatePwm();
-//	  generatePwm2(dutyCycle);
+
+//	  generatePwm2(0.5);
+//	  printOutLine("\t\t-------TEST-------");
 
 	  // Polling
 //	  receiveUserInput(&input);
@@ -357,6 +360,8 @@ int main(void)
 //	  controlRgb2(&input);
 
 //	  updatePwmRgb_s();
+//	  sprintf(txt, "---AFTER => \tIDR: %X, \tRED: %u \tGREEN: %u \tBLUE: %u", GPIOA->IDR, red.pwm, green.pwm, blue.pwm);
+//	  printOutLine(txt);
   }
   /* USER CODE END 3 */
 }

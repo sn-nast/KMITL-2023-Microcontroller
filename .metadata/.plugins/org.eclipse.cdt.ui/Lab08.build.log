@@ -1,35 +1,21 @@
-15:53:49 **** Incremental Build of configuration Debug for project Lab08 ****
+14:09:29 **** Incremental Build of configuration Debug for project Lab08 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/ILI9341 -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Core/Inc/Utilities -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'drawRgbInfo':
-../Core/Src/main.c:174:24: warning: unused variable 'BOX_HEIGHT' [-Wunused-variable]
-  174 |         const uint16_t BOX_HEIGHT = 20;
-      |                        ^~~~~~~~~~
 ../Core/Src/main.c: In function 'drawStudentInfoPage':
-../Core/Src/main.c:317:15: warning: unused variable 'firstName' [-Wunused-variable]
-  317 |         char *firstName = "Alice";
+../Core/Src/main.c:352:15: warning: unused variable 'firstName' [-Wunused-variable]
+  352 |         char *firstName = "Alice";
       |               ^~~~~~~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:395:13: warning: unused variable 'fontSize' [-Wunused-variable]
-  395 |         int fontSize = 2;
-      |             ^~~~~~~~
-../Core/Src/main.c:393:15: warning: unused variable 'humidityPosition' [-Wunused-variable]
-  393 |         Point humidityPosition = { SCREEN_WIDTH / 2 + 10, 30 };
-      |               ^~~~~~~~~~~~~~~~
-../Core/Src/main.c:392:15: warning: unused variable 'temperaturePosition' [-Wunused-variable]
-  392 |         Point temperaturePosition = { 25, 30 };
-      |               ^~~~~~~~~~~~~~~~~~~
 arm-none-eabi-gcc -o "Lab08.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab08\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab08.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Lab08.elf
  
 arm-none-eabi-size   Lab08.elf 
 arm-none-eabi-objdump -h -S  Lab08.elf  > "Lab08.list"
    text	   data	    bss	    dec	    hex	filename
-  42952	    480	   2232	  45664	   b260	Lab08.elf
+  43432	    480	   2232	  46144	   b440	Lab08.elf
 Finished building: default.size.stdout
  
 Finished building: Lab08.list
  
 
-15:53:50 Build Finished. 0 errors, 5 warnings. (took 1s.682ms)
+14:09:30 Build Finished. 0 errors, 1 warnings. (took 1s.767ms)
 

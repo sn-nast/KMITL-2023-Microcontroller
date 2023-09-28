@@ -60,7 +60,7 @@ typedef struct _ColorIntensity
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+const uint8_t SCREEN_ROTATION = SCREEN_HORIZONTAL_1;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -166,56 +166,79 @@ void drawHueCircle(uint16_t color) {
 	drawFilledCircleByCoord(circle, color);
 }
 
-void drawRgbInfo(ColorIntensity redIntensity, ColorIntensity greenIntensity, ColorIntensity blueIntensity) {
+uint16_t convertColorToRgb565(float redIntensity, float greenIntensity, float blueIntensity) {
+  uint16_t red = (uint16_t)(redIntensity * 31.0 + 0.5);
+  uint16_t green = (uint16_t)(greenIntensity * 63.0 + 0.5);
+  uint16_t blue = (uint16_t)(blueIntensity * 31.0 + 0.5);
+
+  uint16_t color = (red << 11) | (green << 5) | blue;
+
+  return color;
+}
+
+void drawRgbInfo(ColorIntensity redColor, ColorIntensity greenColor, ColorIntensity blueColor) {
 	const uint16_t BRIGHT_RED = 0xff3c;
 	const uint16_t BRIGHT_GREEN = 0xcff9;
 	const uint16_t BRIGHT_BLUE = 0xe73f;
-	const uint16_t BOX_WIDTH = 120;
+	const uint16_t BOX_WIDTH = 150;
 	const uint16_t BOX_HEIGHT = 20;
-	const uint16_t GAP_Y = 20;
-
-	drawFilledCircleByCoord(redIntensity.circle, RED);
-	drawFilledCircleByCoord(greenIntensity.circle, GREEN);
-	drawFilledCircleByCoord(blueIntensity.circle, BLUE);
+	const uint16_t GAP_X_CIRCLE_AND_BOX = 15;
 
 	Rectangle redBox =
 	{
-			getCircleEdgeX(redIntensity.circle) + GAP_Y,
-			redIntensity.circle.y - (redIntensity.circle.radius / 2),
-			getCircleEdgeX(redIntensity.circle) + BOX_WIDTH,
-			redIntensity.circle.y + 20
+			getCircleEdgeX(redColor.circle) + GAP_X_CIRCLE_AND_BOX,
+			redColor.circle.y - (redColor.circle.radius / 2),
+			getCircleEdgeX(redColor.circle) + GAP_X_CIRCLE_AND_BOX + BOX_WIDTH,
+			redColor.circle.y + BOX_HEIGHT
 	};
 
 	Rectangle greenBox =
 	{
-			getCircleEdgeX(greenIntensity.circle) + GAP_Y,
-			greenIntensity.circle.y - (greenIntensity.circle.radius / 2),
-			getCircleEdgeX(greenIntensity.circle) + BOX_WIDTH,
-			greenIntensity.circle.y + 20};
+			getCircleEdgeX(greenColor.circle) + GAP_X_CIRCLE_AND_BOX,
+			greenColor.circle.y - (greenColor.circle.radius / 2),
+			getCircleEdgeX(greenColor.circle) + GAP_X_CIRCLE_AND_BOX + BOX_WIDTH,
+			greenColor.circle.y + BOX_HEIGHT
+	};
 
 	Rectangle blueBox =
 	{
-			getCircleEdgeX(blueIntensity.circle) + GAP_Y,
-			blueIntensity.circle.y - (blueIntensity.circle.radius / 2),
-			getCircleEdgeX(blueIntensity.circle) + BOX_WIDTH,
-			blueIntensity.circle.y + 20
+			getCircleEdgeX(blueColor.circle) + GAP_X_CIRCLE_AND_BOX,
+			blueColor.circle.y - (blueColor.circle.radius / 2),
+			getCircleEdgeX(blueColor.circle) + GAP_X_CIRCLE_AND_BOX + BOX_WIDTH,
+			blueColor.circle.y + BOX_HEIGHT
 	};
 
 	Rectangle redIntensityBar =
 	{
 			redBox.x0, redBox.y0,
-			getCircleEdgeX(redIntensity.circle) + GAP_Y + (redIntensity.intensity*BOX_WIDTH) , redBox.y1
+			redBox.x0 + (int) (redColor.intensity*BOX_WIDTH) , redBox.y1
 	};
 	Rectangle greenIntensityBar =
 	{
 			greenBox.x0, greenBox.y0,
-			getCircleEdgeX(greenIntensity.circle) + GAP_Y + (greenIntensity.intensity*BOX_WIDTH) , greenBox.y1
+			greenBox.x0 + (int) (greenColor.intensity*BOX_WIDTH) , greenBox.y1
 	};
 	Rectangle blueIntensityBar =
 	{
 			blueBox.x0, blueBox.y0,
-			getCircleEdgeX(blueIntensity.circle) + GAP_Y + (blueIntensity.intensity*BOX_WIDTH) , blueBox.y1
+			blueBox.x0 + (int) (blueColor.intensity*BOX_WIDTH) , blueBox.y1
 	};
+
+
+	const uint8_t COLOR_PERCENTAGE_FONT_SIZE = 2;
+	const uint8_t GAP_X_BOX_AND_PERCENTAGE = 10;
+
+	Point redPercentagePos = {redBox.x1 + GAP_X_BOX_AND_PERCENTAGE, redBox.y0};
+	Point greenPercentagePos = {greenBox.x1 + GAP_X_BOX_AND_PERCENTAGE, greenBox.y0};
+	Point bluePercentagePos = {blueBox.x1 + GAP_X_BOX_AND_PERCENTAGE, blueBox.y0};
+
+//	fillScreenColor(WHITE);
+
+	drawHueCircle(convertColorToRgb565(redColor.intensity, greenColor.intensity, blueColor.intensity));
+
+	drawFilledCircleByCoord(redColor.circle, RED);
+	drawFilledCircleByCoord(greenColor.circle, GREEN);
+	drawFilledCircleByCoord(blueColor.circle, BLUE);
 
 	drawFilledRectangleByCoord(redBox, BRIGHT_RED);
 	drawFilledRectangleByCoord(greenBox, BRIGHT_GREEN);
@@ -225,50 +248,65 @@ void drawRgbInfo(ColorIntensity redIntensity, ColorIntensity greenIntensity, Col
 	drawFilledRectangleByCoord(greenIntensityBar, GREEN);
 	drawFilledRectangleByCoord(blueIntensityBar, BLUE);
 
+	char text[10];
+	Rectangle area = {redPercentagePos.x, redPercentagePos.y, bluePercentagePos.x + 50, bluePercentagePos.y + 50};
+	clearScreenArea(area, WHITE);
+
+	sprintf(text, "%d", (int) (redColor.intensity * 100));
+	drawTextByPoint(text, redPercentagePos, COLOR_PERCENTAGE_FONT_SIZE);
+
+	sprintf(text, "%d", (int) (greenColor.intensity * 100));
+	drawTextByPoint(text, greenPercentagePos, COLOR_PERCENTAGE_FONT_SIZE);
+
+	sprintf(text, "%d", (int) (blueColor.intensity * 100));
+	drawTextByPoint(text, bluePercentagePos, COLOR_PERCENTAGE_FONT_SIZE);
+}
+
+void drawColorIntensityPercentage()
+{
+
 }
 
 void checkTouchHueCircle(ColorIntensity *redColor, ColorIntensity *greenColor, ColorIntensity *blueColor)
 {
 	uint16_t xPos = 0;
 	uint16_t yPos = 0;
+
+	uint16_t redXPositive = getCircleEdgeX(redColor->circle);
+	uint16_t redXNegative = getCircleEdgeXNegative(redColor->circle);
+	uint16_t redYPositive = getCircleEdgeY(redColor->circle);
+	uint16_t redYNegative = getCircleEdgeYNegative(redColor->circle);
+
+	uint16_t greenXPositive = getCircleEdgeX(greenColor->circle);
+	uint16_t greenXNegative = getCircleEdgeXNegative(greenColor->circle);
+	uint16_t greenYPositive = getCircleEdgeY(greenColor->circle);
+	uint16_t greenYNegative = getCircleEdgeYNegative(greenColor->circle);
+
+	uint16_t blueXPositive = getCircleEdgeX(blueColor->circle);
+	uint16_t blueXNegative = getCircleEdgeXNegative(blueColor->circle);
+	uint16_t blueYPositive = getCircleEdgeY(blueColor->circle);
+	uint16_t blueYNegative = getCircleEdgeYNegative(blueColor->circle);
+
 	while (1) {
 		HAL_Delay(20);
 
 		if (TP_Touchpad_Pressed()) {
 
-
-			char text[20];
-
-
-			uint16_t redXPositive = getCircleEdgeX(redColor->circle);
-			uint16_t redXNegative = getCircleEdgeXNegative(redColor->circle);
-			uint16_t redYPositive = getCircleEdgeY(redColor->circle);
-			uint16_t redYNegative = getCircleEdgeYNegative(redColor->circle);
-
-			sprintf(text, "R: (%d, %d), (%d, %d)", redXNegative, redXPositive, redYNegative, redYPositive);
-			drawText(text, 10, 40, 1);
-
-			uint16_t greenXPositive = getCircleEdgeX(greenColor->circle);
-			uint16_t greenXNegative = getCircleEdgeXNegative(greenColor->circle);
-			uint16_t greenYPositive = getCircleEdgeY(greenColor->circle);
-			uint16_t greenYNegative = getCircleEdgeYNegative(greenColor->circle);
-
-			uint16_t blueXPositive = getCircleEdgeX(blueColor->circle);
-			uint16_t blueXNegative = getCircleEdgeXNegative(blueColor->circle);
-			uint16_t blueYPositive = getCircleEdgeY(blueColor->circle);
-			uint16_t blueYNegative = getCircleEdgeYNegative(blueColor->circle);
-
 			uint16_t position_array[2];
 
-			Point textPos = {10, 30};
-
-			if (TP_Read_Coordinates(position_array) == TOUCHPAD_DATA_OK) {
-				xPos = position_array[0];
-				yPos = position_array[1];
+			if (TP_Read_Coordinates(position_array) == TOUCHPAD_DATA_OK)
+			{
+				if (SCREEN_ROTATION == SCREEN_HORIZONTAL_1)
+				{
+					xPos = position_array[1];
+					yPos = SCREEN_HEIGHT - position_array[0];
+				} else if (SCREEN_ROTATION == SCREEN_HORIZONTAL_2)
+				{
+					xPos = SCREEN_WIDTH - position_array[1];
+					yPos = position_array[0];
+				}
 			}
 
-			sprintf(text, "Touch: (%d, %d)", xPos, yPos);
-			drawText(text, 10, 10, 2);
 
 			if (xPos > redXNegative && xPos < redXPositive && yPos > redYNegative && yPos < redYPositive)
 			{
@@ -277,7 +315,6 @@ void checkTouchHueCircle(ColorIntensity *redColor, ColorIntensity *greenColor, C
 				} else {
 					redColor->intensity += 0.2;
 				}
-				drawTextByPoint("Add Red", textPos, 2);
 			} else if (xPos > greenXNegative && xPos < greenXPositive && yPos > greenYNegative && yPos < greenYPositive)
 			{
 				if (greenColor->intensity >= 1.0) {
@@ -285,7 +322,6 @@ void checkTouchHueCircle(ColorIntensity *redColor, ColorIntensity *greenColor, C
 				} else {
 					greenColor->intensity += 0.2;
 				}
-				drawTextByPoint("Add Green", textPos, 2);
 			} else if (xPos > blueXNegative && xPos < blueXPositive && yPos > blueYNegative && yPos < blueYPositive)
 			{
 				if (blueColor->intensity >= 1.0) {
@@ -293,11 +329,10 @@ void checkTouchHueCircle(ColorIntensity *redColor, ColorIntensity *greenColor, C
 				} else {
 					blueColor->intensity += 0.2;
 				}
-				drawTextByPoint("Add Blue", textPos, 2);
 			}
 			drawRgbInfo(*redColor, *greenColor, *blueColor);
-		} else {
-			HAL_GPIO_WritePin(GPIOB, LD3_Pin | LD2_Pin, GPIO_PIN_RESET);
+//			sprintf(text, "Touch: (%d, %d)", xPos, yPos);
+//			drawText(text, 10, 10, 2);
 		}
 	}
 }
@@ -380,9 +415,6 @@ int main(void) {
 	ColorIntensity greenColor = {{ 30, getCircleEdgeY(redColor.circle) + radius + 15, radius }, 0};
 	ColorIntensity blueColor = {{ 30, getCircleEdgeY(greenColor.circle) + radius + 15, radius }, 0};
 
-//	Circle greenCircle = { 30, getCircleEdgeY(redCircle) + radius + 15, radius };
-//	Circle blueCircle = { 30, getCircleEdgeY(greenCircle) + radius + 15, radius };
-
 	getTemperature(&temperature);
 	getTemperatureString(temperature, temperatureString);
 
@@ -403,10 +435,10 @@ int main(void) {
 
 		/* USER CODE BEGIN 3 */
 		fillScreenColor(WHITE);
-		setRotation(SCREEN_HORIZONTAL_1);
-//		drawTextByPoint(temperatureString, temperaturePosition, fontSize);
-//		drawHueCircle(MAGENTA);
-//		drawTextByPoint(humidityString, humidityPosition, fontSize);
+		setRotation(SCREEN_ROTATION);
+		drawTextByPoint(temperatureString, temperaturePosition, fontSize);
+		drawHueCircle(convertColorToRgb565(redColor.intensity, greenColor.intensity, blueColor.intensity));
+		drawTextByPoint(humidityString, humidityPosition, fontSize);
 		drawRgbInfo(redColor, greenColor, blueColor);
 
 		checkTouchHueCircle(&redColor, &greenColor, &blueColor);

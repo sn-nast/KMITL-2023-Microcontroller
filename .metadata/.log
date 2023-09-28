@@ -6688,3 +6688,36 @@ org.eclipse.core.runtime.CoreException: attempt to set description for a project
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
 !SUBENTRY 1 org.eclipse.cdt.core 4 -1 2023-09-26 10:06:00.626
 !MESSAGE attempt to set description for a project which does not exist or not open
+!SESSION 2566-09-26 18:50:05.706 -----------------------------------------------
+eclipse.buildId=Version 1.13.0
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2566-09-26 18:50:08.809
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2566-09-26 18:50:16.737
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2566-09-26 18:50:16.768
+!MESSAGE Log4j2 initialized with config file D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2566-09-26 18:50:31.267
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2566-09-28 00:06:09.994 -----------------------------------------------
+eclipse.buildId=Version 1.13.0
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2566-09-28 00:06:22.530
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2566-09-28 00:06:22.555
+!MESSAGE Log4j2 initialized with config file D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2566-09-28 00:06:36.283
+!MESSAGE Started RMI Server, listening on port 41337

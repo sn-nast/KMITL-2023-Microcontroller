@@ -334,7 +334,7 @@ int main(void)
 //  startPwmRgb();
 
   // Struct
-  setColorInfo();
+//  setColorInfo();
 
   // Interrupt
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
@@ -347,7 +347,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  startPwmRgb_s();
+//	  startPwmRgb_s();
 	  // Q1-2
 	  generatePwm();
 
@@ -359,7 +359,7 @@ int main(void)
 //	  controlRgb(&input);
 //	  controlRgb2(&input);
 
-	  updatePwmRgb_s();
+//	  updatePwmRgb_s();
 //	  sprintf(txt, "---AFTER => \tIDR: %X, \tRED: %u \tGREEN: %u \tBLUE: %u", GPIOA->IDR, red.pwm, green.pwm, blue.pwm);
 //	  printOutLine(txt);
   }
