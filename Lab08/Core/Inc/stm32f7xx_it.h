@@ -47,6 +47,7 @@
 
 /* Exported functions prototypes ---------------------------------------------*/
 void SysTick_Handler(void);
+void ADC_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */

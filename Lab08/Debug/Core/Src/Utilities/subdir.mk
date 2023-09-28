@@ -5,12 +5,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/Utilities/my_basic.c \
 ../Core/Src/Utilities/my_lcd.c 
 
 OBJS += \
+./Core/Src/Utilities/my_basic.o \
 ./Core/Src/Utilities/my_lcd.o 
 
 C_DEPS += \
+./Core/Src/Utilities/my_basic.d \
 ./Core/Src/Utilities/my_lcd.d 
 
 
@@ -21,7 +24,7 @@ Core/Src/Utilities/%.o Core/Src/Utilities/%.su Core/Src/Utilities/%.cyclo: ../Co
 clean: clean-Core-2f-Src-2f-Utilities
 
 clean-Core-2f-Src-2f-Utilities:
-	-$(RM) ./Core/Src/Utilities/my_lcd.cyclo ./Core/Src/Utilities/my_lcd.d ./Core/Src/Utilities/my_lcd.o ./Core/Src/Utilities/my_lcd.su
+	-$(RM) ./Core/Src/Utilities/my_basic.cyclo ./Core/Src/Utilities/my_basic.d ./Core/Src/Utilities/my_basic.o ./Core/Src/Utilities/my_basic.su ./Core/Src/Utilities/my_lcd.cyclo ./Core/Src/Utilities/my_lcd.d ./Core/Src/Utilities/my_lcd.o ./Core/Src/Utilities/my_lcd.su
 
 .PHONY: clean-Core-2f-Src-2f-Utilities
 

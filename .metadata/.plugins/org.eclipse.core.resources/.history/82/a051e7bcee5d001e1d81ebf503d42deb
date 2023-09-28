@@ -1,0 +1,17 @@
+/*
+ * my_basic.h
+ *
+ *  Created on: Sep 28, 2023
+ *      Author: sunsu
+ */
+
+#ifndef INC_UTILITIES_MY_BASIC_H_
+#define INC_UTILITIES_MY_BASIC_H_
+
+
+void printOut(const char *text);
+
+void printOutLine(const char *text);
+
+void receiveUserInput(char *rxData);
+#endif /* INC_UTILITIES_MY_BASIC_H_ */

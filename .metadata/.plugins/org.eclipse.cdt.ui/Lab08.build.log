@@ -1,21 +1,46 @@
-14:09:29 **** Incremental Build of configuration Debug for project Lab08 ****
+00:29:17 **** Incremental Build of configuration Debug for project Lab08 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/ILI9341 -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Core/Inc/Utilities -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'drawStudentInfoPage':
-../Core/Src/main.c:352:15: warning: unused variable 'firstName' [-Wunused-variable]
-  352 |         char *firstName = "Alice";
-      |               ^~~~~~~~~
+../Core/Src/main.c:331:39: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  331 |                 sprintf(txt, "Count: %d", count);
+      |                                      ~^   ~~~~~
+      |                                       |   |
+      |                                       int uint32_t {aka long unsigned int}
+      |                                      %ld
+../Core/Src/main.c:326:18: warning: variable 'yPos' set but not used [-Wunused-but-set-variable]
+  326 |         uint16_t yPos = 0;
+      |                  ^~~~
+../Core/Src/main.c:325:18: warning: variable 'xPos' set but not used [-Wunused-but-set-variable]
+  325 |         uint16_t xPos = 0;
+      |                  ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:437:17: warning: unused variable 'dataBuffer' [-Wunused-variable]
+  437 |         uint8_t dataBuffer[8];
+      |                 ^~~~~~~~~~
+../Core/Src/main.c:436:17: warning: unused variable 'cmdBuffer' [-Wunused-variable]
+  436 |         uint8_t cmdBuffer[3];
+      |                 ^~~~~~~~~
+../Core/Src/main.c:434:13: warning: unused variable 'fontSize' [-Wunused-variable]
+  434 |         int fontSize = 2;
+      |             ^~~~~~~~
+../Core/Src/main.c:432:15: warning: unused variable 'humidityPosition' [-Wunused-variable]
+  432 |         Point humidityPosition = { SCREEN_WIDTH / 2 + 10, 30 };
+      |               ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:431:15: warning: unused variable 'temperaturePosition' [-Wunused-variable]
+  431 |         Point temperaturePosition = { 25, 30 };
+      |               ^~~~~~~~~~~~~~~~~~~
 arm-none-eabi-gcc -o "Lab08.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab08\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab08.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Lab08.elf
  
 arm-none-eabi-size   Lab08.elf 
 arm-none-eabi-objdump -h -S  Lab08.elf  > "Lab08.list"
    text	   data	    bss	    dec	    hex	filename
-  43432	    480	   2232	  46144	   b440	Lab08.elf
+  49208	    480	   2472	  52160	   cbc0	Lab08.elf
 Finished building: default.size.stdout
  
 Finished building: Lab08.list
  
 
-14:09:30 Build Finished. 0 errors, 1 warnings. (took 1s.767ms)
+00:29:19 Build Finished. 0 errors, 8 warnings. (took 2s.591ms)
 

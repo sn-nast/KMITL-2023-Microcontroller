@@ -25,9 +25,21 @@ void drawText(const char *text, uint8_t x, uint8_t y, uint16_t size)
 	ILI9341_Draw_Text(text, x, y, BLACK, size, WHITE);
 }
 
-void drawTextByPoint(const char *text, Point position, uint16_t size)
+void drawTextAtPoint(const char *text, Point position, uint16_t size)
 {
 	drawText(text, position.x, position.y, size);
+}
+
+void drawTextWithColor(const char *text, uint8_t x, uint8_t y, uint16_t color,
+		uint16_t size, uint16_t backgroundColor)
+{
+	ILI9341_Draw_Text(text, x, y, color, size, backgroundColor);
+}
+
+void drawTextWithColorAtPoint(const char *text, Point position, uint16_t color,
+		uint16_t size, uint16_t backgroundColor)
+{
+	drawTextWithColor(text, position.x, position.y, color, size, backgroundColor);
 }
 
 void drawPixel(uint16_t x, uint16_t y, uint16_t color)
@@ -46,7 +58,7 @@ void drawHollowRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 	ILI9341_Draw_Hollow_Rectangle_Coord(x0, y0, x1, y1, color);
 }
 
-void drawHollowRectangleByCoord(Rectangle rectangle, uint16_t color)
+void drawHollowRectangleAtCoord(Rectangle rectangle, uint16_t color)
 {
 	ILI9341_Draw_Hollow_Rectangle_Coord(rectangle.x0, rectangle.y0, rectangle.x1, rectangle.y1, color);
 }
@@ -56,7 +68,7 @@ void drawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 	ILI9341_Draw_Filled_Rectangle_Coord(x0, y0, x1, y1, color);
 }
 
-void drawFilledRectangleByCoord(Rectangle rectangle, uint16_t color)
+void drawFilledRectangleAtCoord(Rectangle rectangle, uint16_t color)
 {
 	ILI9341_Draw_Filled_Rectangle_Coord(rectangle.x0, rectangle.y0, rectangle.x1, rectangle.y1, color);
 }
@@ -66,7 +78,7 @@ void drawHorizontalLine(uint16_t x, uint16_t y, uint16_t width, uint16_t color)
 	ILI9341_Draw_Horizontal_Line(x, y, width, color);
 }
 
-void drawHorizontalLineByPoint(Point point, uint16_t width, uint16_t color)
+void drawHorizontalLineAtPoint(Point point, uint16_t width, uint16_t color)
 {
 	ILI9341_Draw_Horizontal_Line(point.x, point.y, width, color);
 }
@@ -76,7 +88,7 @@ void drawVerticallLine(uint16_t x, uint16_t y, uint16_t width, uint16_t color)
 	ILI9341_Draw_Vertical_Line(x, y, width, color);
 }
 
-void drawVerticalLineByPoint(Point point, uint16_t width, uint16_t color)
+void drawVerticalLineAtPoint(Point point, uint16_t width, uint16_t color)
 {
 	ILI9341_Draw_Horizontal_Line(point.x, point.y, width, color);
 }
@@ -86,7 +98,7 @@ void drawHollowCircle(uint16_t x, uint16_t y, uint16_t radius, uint16_t color)
 	ILI9341_Draw_Hollow_Circle(x, y, radius, color);
 }
 
-void drawHollowCircleByCoord(Circle circle, uint16_t color)
+void drawHollowCircleAtCoord(Circle circle, uint16_t color)
 {
 	ILI9341_Draw_Hollow_Circle(circle.x, circle.y, circle.radius, color);
 }
@@ -96,7 +108,7 @@ void drawFilledCircle(uint16_t x, uint16_t y, uint16_t radius, uint16_t color)
 	ILI9341_Draw_Filled_Circle(x, y, radius, color);
 }
 
-void drawFilledCircleByCoord(Circle circle, uint16_t color)
+void drawFilledCircleAtCoord(Circle circle, uint16_t color)
 {
 	ILI9341_Draw_Filled_Circle(circle.x, circle.y, circle.radius, color);
 }
@@ -121,7 +133,6 @@ uint16_t getCircleEdgeXNegative(Circle circle)
 {
 	return circle.x - circle.radius;
 }
-
 
 uint16_t getCircleEdgeYNegative(Circle circle)
 {

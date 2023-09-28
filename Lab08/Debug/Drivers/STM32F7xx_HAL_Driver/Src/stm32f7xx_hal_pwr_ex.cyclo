@@ -9,5 +9,5 @@
 ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c:258:19:HAL_PWREx_EnableOverDrive	5
 ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c:304:19:HAL_PWREx_DisableOverDrive	5
 ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c:378:19:HAL_PWREx_EnterUnderDriveSTOPMode	4
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c:446:10:HAL_PWREx_GetVoltageRange	1
-../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c:478:19:HAL_PWREx_ControlVoltageScaling	8
+../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c:444:10:HAL_PWREx_GetVoltageRange	1
+../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c:476:19:HAL_PWREx_ControlVoltageScaling	8
