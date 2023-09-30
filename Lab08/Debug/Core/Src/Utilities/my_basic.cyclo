@@ -2,7 +2,9 @@
 ../Core/Src/Utilities/my_basic.c:11:6:printOutLine	1
 ../Core/Src/Utilities/my_basic.c:17:6:receiveUserInput	2
 ../Core/Src/Utilities/my_basic.c:27:6:delay	1
-../Core/Src/Utilities/my_basic.c:33:6:AM2320_setSensorValue	1
-../Core/Src/Utilities/my_basic.c:40:6:AM2320_startSensor	1
-../Core/Src/Utilities/my_basic.c:50:6:AM2320_calculateValue	3
-../Core/Src/Utilities/my_basic.c:65:10:AM2320_CRC16_2	4
+../Core/Src/Utilities/my_basic.c:33:5:average8	2
+../Core/Src/Utilities/my_basic.c:46:5:average16	2
+../Core/Src/Utilities/my_basic.c:61:6:AM2320_setSensorValue	1
+../Core/Src/Utilities/my_basic.c:68:6:AM2320_startSensor	1
+../Core/Src/Utilities/my_basic.c:77:6:AM2320_calculateValue	3
+../Core/Src/Utilities/my_basic.c:99:10:AM2320_CRC16_2	4

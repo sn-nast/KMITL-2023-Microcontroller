@@ -60,7 +60,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int average_8(int x)
+int average8(int x)
 {
 	static int samples[8];
 	static int i = 0;
@@ -74,7 +74,7 @@ int average_8(int x)
 	return total>>3;
 }
 
-int average_16(int x)
+int average16(int x)
 {
 	static int samples[16];
 	static int i = 0;
@@ -169,8 +169,8 @@ void getValueAdc(volatile uint32_t *adcVolt)
 	while (HAL_ADC_PollForConversion(&hadc1, 100) != HAL_OK) {}
 	uint32_t readValue = HAL_ADC_GetValue(&hadc1);
 
-	adc_avg_8 = average_8(readValue);
-	adc_avg_16 = average_16(readValue);
+	adc_avg_8 = average8(readValue);
+	adc_avg_16 = average16(readValue);
 
 	lightLed(adc_avg_16);
 
@@ -287,7 +287,7 @@ void question5Aun(uint32_t *adcVolt, uint16_t pins[])
 	*adcVolt = HAL_ADC_GetValue(&hadc1);
 
 	char str[80];
-    uint32_t val = average_16(*adcVolt);
+    uint32_t val = average16(*adcVolt);
     int led = 0;
        if(val < 0xfff/5)
        {

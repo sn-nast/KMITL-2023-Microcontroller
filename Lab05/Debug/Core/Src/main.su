@@ -1,5 +1,5 @@
-../Core/Src/main.c:63:5:average_8	16	static
-../Core/Src/main.c:77:5:average_16	16	static
+../Core/Src/main.c:63:5:average8	16	static
+../Core/Src/main.c:77:5:average16	16	static
 ../Core/Src/main.c:91:6:defaultDelay	8	static
 ../Core/Src/main.c:96:6:delay	16	static
 ../Core/Src/main.c:101:6:printOut	16	static

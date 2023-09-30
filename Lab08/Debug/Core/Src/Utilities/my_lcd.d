@@ -1,9 +1,5 @@
 Core/Src/Utilities/my_lcd.o: ../Core/Src/Utilities/my_lcd.c \
- ../Core/Inc/Utilities/my_lcd.h ../Drivers/ILI9341/ILI9341_Touchscreen.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
- ../Core/Inc/stm32f7xx_hal_conf.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
- ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h \
+ ../Core/Inc/Utilities/my_lcd.h \
  ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h \
  ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h \
  ../Drivers/CMSIS/Include/core_cm7.h \
@@ -12,6 +8,10 @@ Core/Src/Utilities/my_lcd.o: ../Core/Src/Utilities/my_lcd.c \
  ../Drivers/CMSIS/Include/cmsis_gcc.h \
  ../Drivers/CMSIS/Include/mpu_armv7.h \
  ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/system_stm32f7xx.h \
+ ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
+ ../Core/Inc/stm32f7xx_hal_conf.h \
+ ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
+ ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_exti.h \
@@ -35,14 +35,10 @@ Core/Src/Utilities/my_lcd.o: ../Core/Src/Utilities/my_lcd.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- ../Core/Inc/main.h ../Drivers/ILI9341/ILI9341_STM32_Driver.h \
- ../Drivers/ILI9341/ILI9341_GFX.h
+ ../Drivers/ILI9341/ILI9341_Touchscreen.h ../Core/Inc/main.h \
+ ../Drivers/ILI9341/ILI9341_STM32_Driver.h \
+ ../Drivers/ILI9341/ILI9341_GFX.h ../Core/Inc/spi.h ../Core/Inc/main.h
 ../Core/Inc/Utilities/my_lcd.h:
-../Drivers/ILI9341/ILI9341_Touchscreen.h:
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
-../Core/Inc/stm32f7xx_hal_conf.h:
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:
-../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:
 ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:
 ../Drivers/CMSIS/Include/core_cm7.h:
@@ -51,6 +47,10 @@ Core/Src/Utilities/my_lcd.o: ../Core/Src/Utilities/my_lcd.c \
 ../Drivers/CMSIS/Include/cmsis_gcc.h:
 ../Drivers/CMSIS/Include/mpu_armv7.h:
 ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/system_stm32f7xx.h:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
+../Core/Inc/stm32f7xx_hal_conf.h:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_exti.h:
@@ -74,6 +74,9 @@ Core/Src/Utilities/my_lcd.o: ../Core/Src/Utilities/my_lcd.c \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
+../Drivers/ILI9341/ILI9341_Touchscreen.h:
 ../Core/Inc/main.h:
 ../Drivers/ILI9341/ILI9341_STM32_Driver.h:
 ../Drivers/ILI9341/ILI9341_GFX.h:
+../Core/Inc/spi.h:
+../Core/Inc/main.h:

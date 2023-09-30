@@ -29,6 +29,34 @@ void delay(uint32_t delay)
 	HAL_Delay(delay);
 }
 
+
+int average8(int newValue)
+{
+	static int samples[8];
+	static int lastIndex = 0;
+	static int total = 0;
+
+	total += newValue - samples[lastIndex];
+	samples[lastIndex] = newValue;
+	lastIndex = (lastIndex==7 ? 0: lastIndex+1);
+
+	return total>>3;
+}
+
+int average16(int newValue)
+{
+	static int samples[16];
+	static int lastIndex = 0;
+	static int total = 0;
+
+	total += newValue - samples[lastIndex];
+	samples[lastIndex] = newValue;
+	lastIndex = (lastIndex==15 ? 0: lastIndex+1);
+
+	return total>>4;
+}
+
+
 // For AM2320
 void AM2320_setSensorValue(uint8_t *cmdBuffer)
 {
@@ -43,14 +71,17 @@ void AM2320_startSensor(I2C_HandleTypeDef *hi2c, uint8_t *cmdBuffer, uint8_t *da
 	HAL_I2C_Master_Transmit(hi2c, 0x5c<<1, cmdBuffer, 3, 200);
 	HAL_I2C_Master_Transmit(hi2c, 0x5c<<1, cmdBuffer, 3, 200);
 	delay(1);
-
 	HAL_I2C_Master_Receive(hi2c, 0x5c<<1, dataBuffer, 8, 200);
 }
 
-void AM2320_calculateValue(float *temperature, float *humidity, uint8_t dataBuffer[])
+void AM2320_calculateValue(float *temperature, float *humidity, uint8_t dataBuffer[8])
 {
 	uint16_t Rcrc = dataBuffer[7] << 8;
 	Rcrc += dataBuffer[6];
+	char text[30];
+	sprintf(text, "DataBuff: %d %d %d %d %d %d %d %d",
+			dataBuffer[0], dataBuffer[1], dataBuffer[2], dataBuffer[3], dataBuffer[4], dataBuffer[5], dataBuffer[6], dataBuffer[7]);
+	printOutLine(text);
 	if (Rcrc == AM2320_CRC16_2(dataBuffer, 6))
 	{
 		uint16_t temperatureRawValue = ((dataBuffer[4] & 0x7F) << 8) + dataBuffer[5];
@@ -60,6 +91,9 @@ void AM2320_calculateValue(float *temperature, float *humidity, uint8_t dataBuff
 		uint16_t himdityRawValue = (dataBuffer[2] << 8) + dataBuffer[3];
 		*humidity = himdityRawValue / 10.0;
 	}
+	sprintf(text, "NewValue: T= %4.1f \t H=%4.1f", *temperature, *humidity);
+	printOutLine(text);
+
 }
 
 uint16_t AM2320_CRC16_2(uint8_t *ptr, uint8_t length)

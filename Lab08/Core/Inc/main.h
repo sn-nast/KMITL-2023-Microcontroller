@@ -77,12 +77,16 @@ void Error_Handler(void);
 #define RMII_REF_CLK_GPIO_Port GPIOA
 #define RMII_MDIO_Pin GPIO_PIN_2
 #define RMII_MDIO_GPIO_Port GPIOA
+#define Temperature_and_Humidity_TIMER_Pin GPIO_PIN_6
+#define Temperature_and_Humidity_TIMER_GPIO_Port GPIOA
 #define RMII_CRS_DV_Pin GPIO_PIN_7
 #define RMII_CRS_DV_GPIO_Port GPIOA
 #define RMII_RXD0_Pin GPIO_PIN_4
 #define RMII_RXD0_GPIO_Port GPIOC
 #define RMII_RXD1_Pin GPIO_PIN_5
 #define RMII_RXD1_GPIO_Port GPIOC
+#define LED1_Pin GPIO_PIN_0
+#define LED1_GPIO_Port GPIOB
 #define RMII_TXD1_Pin GPIO_PIN_13
 #define RMII_TXD1_GPIO_Port GPIOB
 #define LD3_Pin GPIO_PIN_14
@@ -111,8 +115,14 @@ void Error_Handler(void);
 #define RMII_TXD0_GPIO_Port GPIOG
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
+#define LCD_LED_BACKLIGHT_Pin GPIO_PIN_6
+#define LCD_LED_BACKLIGHT_GPIO_Port GPIOB
 #define LD2_Pin GPIO_PIN_7
 #define LD2_GPIO_Port GPIOB
+#define AM2320_SCL_Pin GPIO_PIN_8
+#define AM2320_SCL_GPIO_Port GPIOB
+#define AM2320_SDA_Pin GPIO_PIN_9
+#define AM2320_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

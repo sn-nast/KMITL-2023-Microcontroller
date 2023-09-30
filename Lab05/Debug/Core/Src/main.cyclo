@@ -1,5 +1,5 @@
-../Core/Src/main.c:63:5:average_8	2
-../Core/Src/main.c:77:5:average_16	2
+../Core/Src/main.c:63:5:average8	2
+../Core/Src/main.c:77:5:average16	2
 ../Core/Src/main.c:91:6:defaultDelay	1
 ../Core/Src/main.c:96:6:delay	1
 ../Core/Src/main.c:101:6:printOut	2

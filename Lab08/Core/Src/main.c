@@ -68,6 +68,10 @@ typedef struct _ColorInfo
 /* USER CODE BEGIN PV */
 const uint8_t SCREEN_ROTATION = SCREEN_HORIZONTAL_1;
 uint32_t count = 0;
+const uint16_t BRIGHT_RED = 0xff3c;
+const uint16_t BRIGHT_GREEN = 0xcff9;
+const uint16_t BRIGHT_BLUE = 0xe73f;
+float humidity=31.0, temperature=32.0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -80,9 +84,16 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 void getTemperature(float *temperature) {
 	// In celcius
+	if (*temperature > 100.0)
+	{
+		*temperature = 0.5;
+	} else
+	{
+		*temperature += 20.0;
+	}
 }
 
-void getTemperatureString(float temperature, char *temperatureString) {
+void getTemperatureText(float temperature, char *temperatureString) {
 	sprintf(temperatureString, "%.1f C", temperature);
 }
 
@@ -90,7 +101,7 @@ void getHumidity(float *humidity) {
 	// In Relative Humidity, %RH
 }
 
-void getHumidityString(float humidity, char *humidityString) {
+void getHumidityText(float humidity, char *humidityString) {
 	sprintf(humidityString, "%.1f %%RH", humidity);
 }
 
@@ -132,53 +143,49 @@ Rectangle createColorIntensityBar(Rectangle refRectangle, float colorIntensity)
 	return intensityBar;
 }
 
-void drawRgbInfo(ColorInfo redColor, ColorInfo greenColor, ColorInfo blueColor, ColorInfo mixedColor) {
-	const uint16_t BRIGHT_RED = 0xff3c;
-	const uint16_t BRIGHT_GREEN = 0xcff9;
-	const uint16_t BRIGHT_BLUE = 0xe73f;
+void drawColorIntensityBar(Rectangle colorBox, ColorInfo colorInfo, uint16_t brightColor)
+{
 
-	Rectangle redBox = createColorBox(redColor.circle);
-	Rectangle greenBox = createColorBox(greenColor.circle);
-	Rectangle blueBox = createColorBox(blueColor.circle);
+	Rectangle colorIntensityBar = createColorIntensityBar(colorBox, colorInfo.intensity);
 
-	Rectangle redIntensityBar = createColorIntensityBar(redBox, redColor.intensity);
-	Rectangle greenIntensityBar = createColorIntensityBar(greenBox, greenColor.intensity);
-	Rectangle blueIntensityBar = createColorIntensityBar(blueBox, blueColor.intensity);
+	drawFilledRectangleAtCoord(colorBox, brightColor);
+	drawFilledRectangleAtCoord(colorIntensityBar, colorInfo.color);
+}
 
-	const uint8_t GAP_X_BOX_AND_PERCENTAGE = 10;
-
-	Point redPercentagePos = {redBox.x1 + GAP_X_BOX_AND_PERCENTAGE, redBox.y0};
-	Point greenPercentagePos = {greenBox.x1 + GAP_X_BOX_AND_PERCENTAGE, greenBox.y0};
-	Point bluePercentagePos = {blueBox.x1 + GAP_X_BOX_AND_PERCENTAGE, blueBox.y0};
-
-	drawFilledCircleAtCoord(redColor.circle, redColor.color);
-	drawFilledCircleAtCoord(greenColor.circle, greenColor.color);
-	drawFilledCircleAtCoord(blueColor.circle, blueColor.color);
-
-	drawFilledCircleAtCoord(mixedColor.circle, mixedColor.color);
-
-	drawFilledRectangleAtCoord(redBox, BRIGHT_RED);
-	drawFilledRectangleAtCoord(greenBox, BRIGHT_GREEN);
-	drawFilledRectangleAtCoord(blueBox, BRIGHT_BLUE);
-
-	drawFilledRectangleAtCoord(redIntensityBar, RED);
-	drawFilledRectangleAtCoord(greenIntensityBar, GREEN);
-	drawFilledRectangleAtCoord(blueIntensityBar, BLUE);
-
+void drawColorIntensityPercentageText(Rectangle colorBox, ColorInfo colorInfo)
+{
 	char text[10];
+	const uint8_t GAP_X_BOX_AND_PERCENTAGE = 10;
 	const uint8_t COLOR_PERCENTAGE_FONT_SIZE = 2;
 
-	Rectangle clearArea = {redPercentagePos.x, redPercentagePos.y, bluePercentagePos.x + 50, bluePercentagePos.y + 50};
+	Point percentagePoint = {colorBox.x1 + GAP_X_BOX_AND_PERCENTAGE, colorBox.y0};
+	Rectangle clearArea = {percentagePoint.x, percentagePoint.y, percentagePoint.x + 50, percentagePoint.y + 20};
+
+	sprintf(text, "%d#", (int) (colorInfo.intensity * 100));
+
 	clearScreenArea(clearArea, WHITE);
+	drawTextAtPoint(text, percentagePoint, COLOR_PERCENTAGE_FONT_SIZE);
+}
 
-	sprintf(text, "%d", (int) (redColor.intensity * 100));
-	drawTextAtPoint(text, redPercentagePos, COLOR_PERCENTAGE_FONT_SIZE);
+void drawHueCircle(ColorInfo mixedColorInfo)
+{
+	drawFilledCircleAtCoord(mixedColorInfo.circle, mixedColorInfo.color);
+}
 
-	sprintf(text, "%d", (int) (greenColor.intensity * 100));
-	drawTextAtPoint(text, greenPercentagePos, COLOR_PERCENTAGE_FONT_SIZE);
+void drawColorInfo(ColorInfo colorInfo, uint16_t brightColor)
+{
+	Rectangle boxArea = createColorBox(colorInfo.circle);
+	drawFilledCircleAtCoord(colorInfo.circle, colorInfo.color);
+	drawColorIntensityBar(boxArea, colorInfo, brightColor);
+	drawColorIntensityPercentageText(boxArea, colorInfo);
+}
 
-	sprintf(text, "%d", (int) (blueColor.intensity * 100));
-	drawTextAtPoint(text, bluePercentagePos, COLOR_PERCENTAGE_FONT_SIZE);
+void drawRgbInfo(ColorInfo redColor, ColorInfo greenColor, ColorInfo blueColor, ColorInfo mixedColor)
+{
+	drawHueCircle(mixedColor);
+	drawColorInfo(redColor, BRIGHT_RED);
+	drawColorInfo(greenColor, BRIGHT_GREEN);
+	drawColorInfo(blueColor, BRIGHT_BLUE);
 }
 
 uint8_t isTouchWithinCircle(Circle circle, uint16_t xPos, uint16_t yPos)
@@ -192,7 +199,21 @@ uint8_t isTouchWithinCircle(Circle circle, uint16_t xPos, uint16_t yPos)
 	{
 		return 1;
 	} else
+	{
 		return 0;
+	}
+}
+
+uint8_t isTouchWithinRectangle(Rectangle rectangle, uint16_t xPos, uint16_t yPos)
+{
+	if (xPos >= rectangle.x0 && xPos <= rectangle.x1 && yPos <= rectangle.y1 && yPos >= rectangle.y0)
+	{
+		return 1;
+	} else
+	{
+		return 0;
+	}
+
 }
 
 void addColorIntensity(ColorInfo *colorInfo)
@@ -202,27 +223,17 @@ void addColorIntensity(ColorInfo *colorInfo)
 
 	if (colorInfo->intensity >= MAX_INTENSITY) {
 		colorInfo->intensity = 0.0;
-	} else {
+	} else
+	{
 		colorInfo->intensity += STEP_INTENSITY;
 	}
 }
 
-void getTouchPosition(uint16_t *xPos, uint16_t *yPos)
+void drawTouchPosition(uint16_t xPos, uint16_t yPos)
 {
-	uint16_t position_array[2];
-
-	if (TP_Read_Coordinates(position_array) == TOUCHPAD_DATA_OK)
-	{
-		if (SCREEN_ROTATION == SCREEN_HORIZONTAL_1)
-		{
-			*xPos = position_array[1];
-			*yPos = SCREEN_HEIGHT - position_array[0];
-		} else if (SCREEN_ROTATION == SCREEN_HORIZONTAL_2)
-		{
-			*xPos = SCREEN_WIDTH - position_array[1];
-			*yPos = position_array[0];
-		}
-	}
+	char text[20];
+	sprintf(text, "T: (%d,%d)", xPos, yPos);
+	drawText(text, 50, 180, 3);
 }
 
 void checkTouchHueCircle(ColorInfo *redColor, ColorInfo *greenColor, ColorInfo *blueColor, ColorInfo *mixedColor)
@@ -230,13 +241,13 @@ void checkTouchHueCircle(ColorInfo *redColor, ColorInfo *greenColor, ColorInfo *
 	uint16_t xPos = 0;
 	uint16_t yPos = 0;
 
-	int isEndShowing = 0;
+	int isDisplaying = 1;
 
-	while (!isEndShowing) {
+	while (isDisplaying) {
 		HAL_Delay(10);
 
-		if (TP_Touchpad_Pressed()) {
-
+		if (TP_Touchpad_Pressed())
+		{
 			uint16_t position_array[2];
 
 			if (TP_Read_Coordinates(position_array) == TOUCHPAD_DATA_OK)
@@ -255,31 +266,27 @@ void checkTouchHueCircle(ColorInfo *redColor, ColorInfo *greenColor, ColorInfo *
 			if (isTouchWithinCircle(redColor->circle, xPos, yPos))
 			{
 				addColorIntensity(redColor);
-			}
-			else if (isTouchWithinCircle(greenColor->circle, xPos, yPos))
+				drawColorInfo(*redColor, BRIGHT_RED);
+			} else if (isTouchWithinCircle(greenColor->circle, xPos, yPos))
 			{
 				addColorIntensity(greenColor);
-			}
-			else if (isTouchWithinCircle(blueColor->circle, xPos, yPos))
+				drawColorInfo(*greenColor, BRIGHT_GREEN);
+			} else if (isTouchWithinCircle(blueColor->circle, xPos, yPos))
 			{
 				addColorIntensity(blueColor);
+				drawColorInfo(*blueColor, BRIGHT_BLUE);
 			} else if (isTouchWithinCircle(mixedColor->circle, xPos, yPos))
 			{
-				isEndShowing = 1;
+				isDisplaying = 0;
 			}
-			mixedColor->color = convertColorToRgb565(redColor->intensity, greenColor->intensity, blueColor->intensity);
 
-			drawRgbInfo(*redColor, *greenColor, *blueColor, *mixedColor);
+			mixedColor->color = convertColorToRgb565(redColor->intensity, greenColor->intensity, blueColor->intensity);
+			drawHueCircle(*mixedColor);
 		}
 	}
 }
 
-void drawColorInfoPage()
-{
-
-}
-
-void startTimer()
+void startTimerInStudentInfoPage()
 {
 	count = 0;
 	HAL_TIM_Base_Init(&htim2);
@@ -287,47 +294,83 @@ void startTimer()
 	HAL_ADC_Start_IT(&hadc1);
 }
 
-void stopTimer()
+void stopTimerInStudentInfoPage()
 {
 	HAL_TIM_Base_DeInit(&htim2);
 	HAL_ADC_Stop_IT(&hadc1);
 }
 
-void drawStudentInfoPage(ColorInfo colorInfo)
+void startTimerOnSensor()
 {
-//	char *picArray;
-//	fillScreenColor(WHITE);
+	HAL_TIM_Base_Start_IT(&htim3);
+}
 
-	char *group = "G03";
+void stopTimerOnSensor()
+{
+	HAL_TIM_Base_Stop_IT(&htim3);
+}
+
+void drawColorInfoPage(ColorInfo *redColor, ColorInfo *greenColor, ColorInfo *blueColor, ColorInfo *mixedColor)
+{
+	fillScreenColor(WHITE);
+	setRotation(SCREEN_ROTATION);
+
+	startTimerOnSensor();
+	drawRgbInfo(*redColor, *greenColor, *blueColor, *mixedColor);
+	checkTouchHueCircle(redColor, greenColor, blueColor, mixedColor);
+	stopTimerOnSensor();
+}
+
+void drawStudentInfoText(Point endImagePoint, uint16_t textColor)
+{
+	const int LINE_SPACEING_SIZE = 20;
+	const int FONT_SIZE = 2;
+
+	char *group = "Group No.3";
 	char *firstName = "Natchanon";
 	char *lastName = "Bunyachawaset";
 	char *myId = "64011113";
 
-	Point infoPos = {SCREEN_WIDTH/2 - 50, 100};
-	const int LINE_SPACEING_SIZE = 20;
-	const int FONT_SIZE = 2;
+	Point infoPos =
+	{
+			endImagePoint.x + 10,
+			50
+	};
 
-	uint16_t color = colorInfo.color;
+	drawTextWithColor(group, infoPos.x, infoPos.y, textColor, FONT_SIZE, WHITE);
+	drawTextWithColor(firstName, infoPos.x, infoPos.y + LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
+	drawTextWithColor(lastName, infoPos.x, infoPos.y + 2 *LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
+	drawTextWithColor(myId, infoPos.x, infoPos.y + 3*LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
+}
 
-	int isEndShowing = 0;
+void drawStudentInfoPage(ColorInfo colorInfo, Image image)
+{
+
 	fillScreenColor(WHITE);
-//	drawImage((const char*) testPic1, SCREEN_VERTICAL_1);
-	drawTextWithColor(group, infoPos.x, infoPos.y, color, FONT_SIZE, WHITE);
-	drawTextWithColor(firstName, infoPos.x, infoPos.y + LINE_SPACEING_SIZE, color, FONT_SIZE, WHITE);
-	drawTextWithColor(lastName, infoPos.x, infoPos.y + 2 *LINE_SPACEING_SIZE, color, FONT_SIZE, WHITE);
-	drawTextWithColor(myId, infoPos.x, infoPos.y + 3*LINE_SPACEING_SIZE, color, FONT_SIZE, WHITE);
+	setRotation(SCREEN_ROTATION);
+
+	Point endImagePoint = {
+			image.drawPoint.x + image.width,
+			image.drawPoint.y + image.height
+	};
+	Rectangle imageArea = getImageArea(image);
+
+	drawImageAtPoint(image, SCREEN_ROTATION);
+	drawStudentInfoText(endImagePoint, colorInfo.color);
 
 	uint16_t xPos = 0;
 	uint16_t yPos = 0;
 
-	startTimer();
-	while (!isEndShowing) {
+	startTimerInStudentInfoPage();
+
+	int isDisplaying = 1;
+	while (isDisplaying) {
 		char txt[20];
 		sprintf(txt, "Count: %d", (int) count);
-		drawText(txt, 10, 10, 3);
+		drawText(txt, 10, 200, 3);
 		if (count > 4)
 		{
-			isEndShowing = 1;
+			isDisplaying = 0;
 		} else if (TP_Touchpad_Pressed())
 		{
 			uint16_t position_array[2];
@@ -344,14 +387,71 @@ void drawStudentInfoPage(ColorInfo colorInfo)
 					yPos = position_array[0];
 				}
 			}
-			isEndShowing = 1;
+
+			if (isTouchWithinRectangle(imageArea, xPos, yPos))
+			{
+				isDisplaying = 0;
+			}
 		}
 	}
-	stopTimer();
+
+	stopTimerInStudentInfoPage();
 }
 
-void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
-	count++;
+void drawTemperatureTextAtPoint(float temperature, Point temperaturePosition)
+{
+	char temperatureText[10];
+	Rectangle temperatureArea = { temperaturePosition.x, temperaturePosition.y, temperaturePosition.x + 82, temperaturePosition.y + 20};
+
+	clearScreenArea(temperatureArea, WHITE);
+	getTemperatureText(temperature, temperatureText);
+	drawTextAtPoint(temperatureText, temperaturePosition, 2);
+}
+
+void drawHumidityTextAtPoint(float humidity, Point humidityPosition)
+{
+	char temperatureText[10];
+	Rectangle temperatureArea = { humidityPosition.x, humidityPosition.y, humidityPosition.x + 82, humidityPosition.y + 20};
+
+	clearScreenArea(temperatureArea, WHITE);
+	getHumidityText(humidity, temperatureText);
+	drawTextAtPoint(temperatureText, humidityPosition, 2);
+}
+
+
+void setLedBacklightIntensity(PwmInfo *ledBacklight, float dutyCycle)
+{
+	ledBacklight->timer->Instance->CCMR3 = (10000-1) * dutyCycle;
+	HAL_TIM_PWM_Start(ledBacklight->timer, ledBacklight->timerChannel);
+}
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
+{
+	if(hadc == &hadc1)
+	{
+		count++;
+	};
+}
+
+void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)
+{
+	static int countTimer = 0;
+	static float temperature = 10.5;
+	static float humidity = 20.5;
+
+	if (htim == &htim3)
+	{
+		countTimer++;
+
+		Point temperaturePosition = { 25, 30 };
+		Point humidityPosition = { SCREEN_WIDTH / 2 + 10, 30 };
+
+		getTemperature(&temperature);
+		drawTemperatureTextAtPoint(temperature, temperaturePosition);
+
+		getHumidity(&humidity);
+		drawHumidityTextAtPoint(humidity, humidityPosition);
+	}
 }
 /* USER CODE END 0 */
 
@@ -396,43 +496,55 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM2_Init();
   MX_ADC1_Init();
+  MX_TIM3_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 	ILI9341_Init(); // initial driver setup to drive ili9341
 
-	float temperature = 10.1;
-	float humidity = 40.1;
+	const uint16_t COLOR_CIRCLE_RADIUS = 22;
 
-	char temperatureString[10];
-	char humidityString[10];
-
-	uint16_t radius = 20;
-
-	ColorInfo redColor = {{ 30, SCREEN_HEIGHT / 4 + 35, radius }, RED, 0};
-	ColorInfo greenColor = {{ 30, getCircleEdgeY(redColor.circle) + radius + 15, radius }, GREEN, 0};
-	ColorInfo blueColor = {{ 30, getCircleEdgeY(greenColor.circle) + radius + 15, radius }, BLUE, 0};
+	ColorInfo redColor = {
+			{ 30, SCREEN_HEIGHT / 4 + 35, COLOR_CIRCLE_RADIUS },
+			RED, 0
+	};
+	ColorInfo greenColor = {
+			{ 30, getCircleEdgeY(redColor.circle) + COLOR_CIRCLE_RADIUS + 15, COLOR_CIRCLE_RADIUS },
+			GREEN, 0
+	};
+	ColorInfo blueColor = {
+			{ 30, getCircleEdgeY(greenColor.circle) + COLOR_CIRCLE_RADIUS + 15, COLOR_CIRCLE_RADIUS },
+			BLUE, 0
+	};
 	ColorInfo mixedColor = {
 			{ SCREEN_WIDTH / 2 - 25, 45, 25 },
 			convertColorToRgb565(redColor.intensity, greenColor.intensity, blueColor.intensity),
 			0
 	};
 
-	getTemperature(&temperature);
-	getTemperatureString(temperature, temperatureString);
-
-	getHumidity(&humidity);
-	getHumidityString(humidity, humidityString);
-
-	Point temperaturePosition = { 25, 30 };
-	Point humidityPosition = { SCREEN_WIDTH / 2 + 10, 30 };
-
-	int fontSize = 2;
-
+	char str[50];
 	uint8_t cmdBuffer[3];
 	uint8_t dataBuffer[8];
 
-	char str[50];
+	Point pandaPicuturePoint = { 30, 30 };
+	Image pandaPicture = {
+			(const char*) pandaPic,
+			pandaPicuturePoint,
+			120,
+			181
+	};
+
+	Point sunPicturePoint = {30, 30};
+	Image sunPicture = {
+			(const char*) sunPic,
+			sunPicturePoint,
+			120,
+			160
+	};
+
 	sprintf(str, "\n\rAM2320 I2C DEMO Starting ...");
 	printOutLine(str);
+
+//	AM2320_setSensorValue(cmdBuffer);
 
   /* USER CODE END 2 */
 
@@ -442,17 +554,18 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		fillScreenColor(WHITE);
-		setRotation(SCREEN_ROTATION);
+//		AM2320 Sensor
+//		delay(1000);
+//		sprintf(str, "Temp = %4.1f \tHumidity = %4.1f", temperature, humidity);
+//		printOutLine(str);
+//		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+//
+//		AM2320_startSensor(&hi2c1, cmdBuffer, dataBuffer);
+//		AM2320_calculateValue(&temperature, &humidity, dataBuffer);
 
-//		drawTextByPoint(temperatureString, temperaturePosition, fontSize);
-//		drawTextByPoint(humidityString, humidityPosition, fontSize);
-		drawRgbInfo(redColor, greenColor, blueColor, mixedColor);
-		checkTouchHueCircle(&redColor, &greenColor, &blueColor, &mixedColor);
-
-		drawStudentInfoPage(mixedColor);
-
-		HAL_Delay(10);
+		drawColorInfoPage(&redColor, &greenColor, &blueColor, &mixedColor);
+		drawStudentInfoPage(mixedColor, sunPicture);
+		delay(10);
 	}
   /* USER CODE END 3 */
 }

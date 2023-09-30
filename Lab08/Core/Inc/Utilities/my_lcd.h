@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include "stm32f7xx.h"
 
 #define SCREEN_HEIGHT ILI9341_SCREEN_HEIGHT
 #define SCREEN_WIDTH ILI9341_SCREEN_WIDTH
@@ -27,6 +28,14 @@ typedef struct _Circle
 	uint16_t y;
 	uint16_t radius;
 } Circle;
+
+typedef struct _Image
+{
+	const char *imageArray;
+	Point drawPoint;
+	uint16_t width;
+	uint16_t height;
+} Image;
 
 void fillScreenColor(uint16_t color);
 void clearScreenArea(Rectangle area, uint16_t color);
@@ -57,6 +66,8 @@ void drawFilledCircle(uint16_t x, uint16_t y, uint16_t radius, uint16_t color);
 void drawFilledCircleAtCoord(Circle circle, uint16_t color);
 
 void drawImage(const char *imageArray, uint8_t orientation);
+void drawImageAtPoint(Image image, uint8_t rotation);
+Rectangle getImageArea(Image image);
 
 uint16_t getCircleEdgeX(Circle circle);
 uint16_t getCircleEdgeY(Circle circle);

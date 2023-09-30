@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="HAL_ADC"/>
+		<item key="selection" value="getTouchPosition"/>
 		<list key="findhistory">
-			<item value="HAL_ADC"/>
-			<item value="hue"/>
-			<item value="snow"/>
-			<item value="}"/>
-			<item value="};"/>
-			<item value="Draw_Text"/>
-			<item value="htim2"/>
-			<item value="input char"/>
-			<item value="IRQHandler"/>
-			<item value="receiveText"/>
-			<item value="checkQuitStatus"/>
-			<item value="sentMessage"/>
-			<item value="printUser1Name"/>
-			<item value="receivedIndex"/>
-			<item value="callback"/>
+			<item value="getTouchPosition"/>
+			<item value="getto"/>
+			<item value="gett"/>
+			<item value="testt"/>
+			<item value="checkH"/>
+			<item value="check"/>
+			<item value="drawColorInfoPage"/>
+			<item value="temp"/>
+			<item value="poten"/>
+			<item value="get"/>
+			<item value="print"/>
+			<item value="tim3"/>
+			<item value="tim2"/>
+			<item value="tim1"/>
+			<item value="tim"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

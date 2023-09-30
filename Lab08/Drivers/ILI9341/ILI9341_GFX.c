@@ -307,7 +307,7 @@ void ILI9341_Draw_Image(const char *Image_Array, uint8_t Orientation)
 				Temp_small_buffer[k] = Image_Array[counter + k];
 			}
 			HAL_SPI_Transmit(HSPI_INSTANCE, (unsigned char*) Temp_small_buffer,
-					BURST_MAX_SIZE, 10);
+			BURST_MAX_SIZE, 10);
 			counter += BURST_MAX_SIZE;
 		}
 		HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_SET);
@@ -332,7 +332,7 @@ void ILI9341_Draw_Image(const char *Image_Array, uint8_t Orientation)
 				Temp_small_buffer[k] = Image_Array[counter + k];
 			}
 			HAL_SPI_Transmit(HSPI_INSTANCE, (unsigned char*) Temp_small_buffer,
-					BURST_MAX_SIZE, 10);
+			BURST_MAX_SIZE, 10);
 			counter += BURST_MAX_SIZE;
 		}
 		HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_SET);
@@ -357,7 +357,7 @@ void ILI9341_Draw_Image(const char *Image_Array, uint8_t Orientation)
 				Temp_small_buffer[k] = Image_Array[counter + k];
 			}
 			HAL_SPI_Transmit(HSPI_INSTANCE, (unsigned char*) Temp_small_buffer,
-					BURST_MAX_SIZE, 10);
+			BURST_MAX_SIZE, 10);
 			counter += BURST_MAX_SIZE;
 		}
 		HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_SET);
@@ -382,7 +382,7 @@ void ILI9341_Draw_Image(const char *Image_Array, uint8_t Orientation)
 				Temp_small_buffer[k] = Image_Array[counter + k];
 			}
 			HAL_SPI_Transmit(HSPI_INSTANCE, (unsigned char*) Temp_small_buffer,
-					BURST_MAX_SIZE, 10);
+			BURST_MAX_SIZE, 10);
 			counter += BURST_MAX_SIZE;
 		}
 		HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_SET);
