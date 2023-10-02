@@ -29,13 +29,14 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
+#include "string.h"
+
 #include "ILI9341_Touchscreen.h"
 #include "ILI9341_STM32_Driver.h"
 #include "ILI9341_GFX.h"
 
 #include "snow_tiger.h"
 
-#include "string.h"
 #include "Utilities/my_lcd.h"
 #include "Utilities/my_basic.h"
 #include "Utilities/my_picture.h"
@@ -56,6 +57,15 @@ typedef struct _ColorInfo
 	float intensity;
 } ColorInfo ;
 
+typedef struct _StudentInfo
+{
+	char group[20];
+	char firstName[30];
+	char lastName[30];
+	char id[10];
+	Image image;
+} StudentInfo;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -67,11 +77,13 @@ typedef struct _ColorInfo
 
 /* USER CODE BEGIN PV */
 const uint8_t SCREEN_ROTATION = SCREEN_HORIZONTAL_1;
+
 uint32_t count = 0;
+
 const uint16_t BRIGHT_RED = 0xff3c;
 const uint16_t BRIGHT_GREEN = 0xcff9;
 const uint16_t BRIGHT_BLUE = 0xe73f;
-float humidity=31.0, temperature=32.0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -82,23 +94,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void getTemperature(float *temperature) {
-	// In celcius
-	if (*temperature > 100.0)
-	{
-		*temperature = 0.5;
-	} else
-	{
-		*temperature += 20.0;
-	}
-}
-
 void getTemperatureText(float temperature, char *temperatureString) {
 	sprintf(temperatureString, "%.1f C", temperature);
-}
-
-void getHumidity(float *humidity) {
-	// In Relative Humidity, %RH
 }
 
 void getHumidityText(float humidity, char *humidityString) {
@@ -161,7 +158,7 @@ void drawColorIntensityPercentageText(Rectangle colorBox, ColorInfo colorInfo)
 	Point percentagePoint = {colorBox.x1 + GAP_X_BOX_AND_PERCENTAGE, colorBox.y0};
 	Rectangle clearArea = {percentagePoint.x, percentagePoint.y, percentagePoint.x + 50, percentagePoint.y + 20};
 
-	sprintf(text, "%d#", (int) (colorInfo.intensity * 100));
+	sprintf(text, "%d%%", (int) (colorInfo.intensity * 100));
 
 	clearScreenArea(clearArea, WHITE);
 	drawTextAtPoint(text, percentagePoint, COLOR_PERCENTAGE_FONT_SIZE);
@@ -321,42 +318,38 @@ void drawColorInfoPage(ColorInfo *redColor, ColorInfo *greenColor, ColorInfo *bl
 	stopTimerOnSensor();
 }
 
-void drawStudentInfoText(Point endImagePoint, uint16_t textColor)
+void drawStudentInfoText(StudentInfo studentInfo, Point endImagePoint, uint16_t textColor)
 {
-	const int LINE_SPACEING_SIZE = 20;
+	const int LINE_SPACEING_SIZE = 40;
 	const int FONT_SIZE = 2;
 
-	char *group = "Group No.3";
-	char *firstName = "Natchanon";
-	char *lastName = "Bunyachawaset";
-	char *myId = "64011113";
-
-	Point infoPos =
+	Point infoPoint =
 	{
 			endImagePoint.x + 10,
 			50
 	};
 
-	drawTextWithColor(group, infoPos.x, infoPos.y, textColor, FONT_SIZE, WHITE);
-	drawTextWithColor(firstName, infoPos.x, infoPos.y + LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
-	drawTextWithColor(lastName, infoPos.x, infoPos.y + 2 *LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
-	drawTextWithColor(myId, infoPos.x, infoPos.y + 3*LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
+	drawTextWithColor(studentInfo.group, infoPoint.x, infoPoint.y, textColor, FONT_SIZE, WHITE);
+	drawTextWithColor(studentInfo.firstName, infoPoint.x, infoPoint.y + LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
+	drawTextWithColor(studentInfo.lastName, infoPoint.x, infoPoint.y + 2 *LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
+	drawTextWithColor(studentInfo.id, infoPoint.x, infoPoint.y + 3*LINE_SPACEING_SIZE, textColor, FONT_SIZE, WHITE);
 }
 
-void drawStudentInfoPage(ColorInfo colorInfo, Image image)
+void drawStudentInfoPage(StudentInfo studentInfo, ColorInfo colorInfo)
 {
 
 	fillScreenColor(WHITE);
 	setRotation(SCREEN_ROTATION);
+	Image *image = &studentInfo.image;
 
 	Point endImagePoint = {
-			image.drawPoint.x + image.width,
-			image.drawPoint.y + image.height
+			image->drawPoint.x + image->width,
+			image->drawPoint.y + image->height
 	};
-	Rectangle imageArea = getImageArea(image);
+	Rectangle imageArea = getImageArea(*image);
 
-	drawImageAtPoint(image, SCREEN_ROTATION);
-	drawStudentInfoText(endImagePoint, colorInfo.color);
+	drawImageAtPoint(*image, SCREEN_ROTATION);
+	drawStudentInfoText(studentInfo, endImagePoint, colorInfo.color);
 
 	uint16_t xPos = 0;
 	uint16_t yPos = 0;
@@ -418,7 +411,7 @@ void drawHumidityTextAtPoint(float humidity, Point humidityPosition)
 	drawTextAtPoint(temperatureText, humidityPosition, 2);
 }
 
-
+// For LED Backlight - not finished yet
 void setLedBacklightIntensity(PwmInfo *ledBacklight, float dutyCycle)
 {
 	ledBacklight->timer->Instance->CCMR3 = (10000-1) * dutyCycle;
@@ -438,6 +431,19 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)
 	static int countTimer = 0;
 	static float temperature = 10.5;
 	static float humidity = 20.5;
+	static uint8_t cmdBuffer[3];
+	static uint8_t dataBuffer[8];
+
+	static int isSetCommand = 0;
+	if (!isSetCommand)
+	{
+		char text[50];
+		sprintf(text, "AM2320 I2C DEMO Starting ...");
+		printOutLine(text);
+
+		AM2320_setCommand(cmdBuffer);
+		isSetCommand = 1;
+	}
 
 	if (htim == &htim3)
 	{
@@ -446,13 +452,14 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)
 		Point temperaturePosition = { 25, 30 };
 		Point humidityPosition = { SCREEN_WIDTH / 2 + 10, 30 };
 
-		getTemperature(&temperature);
-		drawTemperatureTextAtPoint(temperature, temperaturePosition);
+		AM2320_startSensor(&hi2c1, cmdBuffer, dataBuffer);
+		AM2320_getTemperatureAndHumidity(&temperature, &humidity, dataBuffer);
 
-		getHumidity(&humidity);
+		drawTemperatureTextAtPoint(temperature, temperaturePosition);
 		drawHumidityTextAtPoint(humidity, humidityPosition);
 	}
 }
+
 /* USER CODE END 0 */
 
 /**
@@ -497,7 +504,6 @@ int main(void)
   MX_TIM2_Init();
   MX_ADC1_Init();
   MX_TIM3_Init();
-  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 	ILI9341_Init(); // initial driver setup to drive ili9341
 
@@ -505,15 +511,18 @@ int main(void)
 
 	ColorInfo redColor = {
 			{ 30, SCREEN_HEIGHT / 4 + 35, COLOR_CIRCLE_RADIUS },
-			RED, 0
+			RED,
+			0
 	};
 	ColorInfo greenColor = {
 			{ 30, getCircleEdgeY(redColor.circle) + COLOR_CIRCLE_RADIUS + 15, COLOR_CIRCLE_RADIUS },
-			GREEN, 0
+			GREEN,
+			0
 	};
 	ColorInfo blueColor = {
 			{ 30, getCircleEdgeY(greenColor.circle) + COLOR_CIRCLE_RADIUS + 15, COLOR_CIRCLE_RADIUS },
-			BLUE, 0
+			BLUE,
+			0
 	};
 	ColorInfo mixedColor = {
 			{ SCREEN_WIDTH / 2 - 25, 45, 25 },
@@ -521,50 +530,41 @@ int main(void)
 			0
 	};
 
-	char str[50];
-	uint8_t cmdBuffer[3];
-	uint8_t dataBuffer[8];
-
-	Point pandaPicuturePoint = { 30, 30 };
-	Image pandaPicture = {
-			(const char*) pandaPic,
-			pandaPicuturePoint,
+	Point redPandaImagePoint = { 30, 30 };
+	Image redPandaImage = {
+			(const char*) redPandaPic,
+			redPandaImagePoint,
 			120,
 			181
 	};
 
-	Point sunPicturePoint = {30, 30};
-	Image sunPicture = {
-			(const char*) sunPic,
-			sunPicturePoint,
-			120,
-			160
+//	Point sunImagePoint = {30, 30};
+//	Image sunImage = {
+//			(const char*) sunPic,
+//			sunImagePoint,
+//			120,
+//			160
+//	};
+
+	StudentInfo myInfo =
+	{
+			"Group No.3",
+			"Natchanon",
+			"Bunyachawaset",
+			"64011113",
+			redPandaImage
 	};
-
-	sprintf(str, "\n\rAM2320 I2C DEMO Starting ...");
-	printOutLine(str);
-
-//	AM2320_setSensorValue(cmdBuffer);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-	while (1) {
+	while (1)
+	{
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//		AM2320 Sensor
-//		delay(1000);
-//		sprintf(str, "Temp = %4.1f \tHumidity = %4.1f", temperature, humidity);
-//		printOutLine(str);
-//		HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-//
-//		AM2320_startSensor(&hi2c1, cmdBuffer, dataBuffer);
-//		AM2320_calculateValue(&temperature, &humidity, dataBuffer);
-
 		drawColorInfoPage(&redColor, &greenColor, &blueColor, &mixedColor);
-		drawStudentInfoPage(mixedColor, sunPicture);
+		drawStudentInfoPage(myInfo, mixedColor);
 		delay(10);
 	}
   /* USER CODE END 3 */

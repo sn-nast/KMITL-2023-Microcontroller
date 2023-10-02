@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="getTouchPosition"/>
+		<item key="selection" value="cmd"/>
 		<list key="findhistory">
+			<item value="cmd"/>
 			<item value="getTouchPosition"/>
 			<item value="getto"/>
 			<item value="gett"/>
@@ -22,14 +23,13 @@
 			<item value="tim3"/>
 			<item value="tim2"/>
 			<item value="tim1"/>
-			<item value="tim"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1280"/>
+		<item key="DIALOG_X_ORIGIN" value="974"/>
 		<item key="DIALOG_Y_ORIGIN" value="255"/>
 		<item key="DIALOG_WIDTH" value="414"/>
 		<item key="DIALOG_HEIGHT" value="454"/>

@@ -119,10 +119,6 @@ void Error_Handler(void);
 #define LCD_LED_BACKLIGHT_GPIO_Port GPIOB
 #define LD2_Pin GPIO_PIN_7
 #define LD2_GPIO_Port GPIOB
-#define AM2320_SCL_Pin GPIO_PIN_8
-#define AM2320_SCL_GPIO_Port GPIOB
-#define AM2320_SDA_Pin GPIO_PIN_9
-#define AM2320_SDA_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

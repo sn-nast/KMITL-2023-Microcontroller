@@ -21,8 +21,8 @@
 ../Core/Src/Utilities/my_lcd.c:112:6:drawFilledCircleAtCoord	24	static
 ../Core/Src/Utilities/my_lcd.c:117:6:drawImage	16	static
 ../Core/Src/Utilities/my_lcd.c:122:6:drawImageAtPoint	552	static
-../Core/Src/Utilities/my_lcd.c:161:11:getImageArea	32	static
-../Core/Src/Utilities/my_lcd.c:173:10:getCircleEdgeX	16	static
-../Core/Src/Utilities/my_lcd.c:178:10:getCircleEdgeY	16	static
-../Core/Src/Utilities/my_lcd.c:183:10:getCircleEdgeXNegative	16	static
-../Core/Src/Utilities/my_lcd.c:188:10:getCircleEdgeYNegative	16	static
+../Core/Src/Utilities/my_lcd.c:162:11:getImageArea	32	static
+../Core/Src/Utilities/my_lcd.c:174:10:getCircleEdgeX	16	static
+../Core/Src/Utilities/my_lcd.c:179:10:getCircleEdgeY	16	static
+../Core/Src/Utilities/my_lcd.c:184:10:getCircleEdgeXNegative	16	static
+../Core/Src/Utilities/my_lcd.c:189:10:getCircleEdgeYNegative	16	static

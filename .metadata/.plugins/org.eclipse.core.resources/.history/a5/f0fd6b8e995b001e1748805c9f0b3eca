@@ -1,8 +1,0 @@
-#ifndef INC_UTILITIES_MY_LCD_H_
-#define INC_UTILITIES_MY_LCD_H_
-
-
-void fillScreenColor(uint16_t color);
-
-
-#endif /* INC_UTILITIES_MY_LCD_H_ */
