@@ -1,0 +1,5 @@
+../TestFolder/my_sensor.c:4:6:AM2320_setCommand	16	static
+../TestFolder/my_sensor.c:12:6:AM2320_startSensor	40	static
+../TestFolder/my_sensor.c:23:6:AM2320_getTemperatureAndHumidity	88	static
+../TestFolder/my_sensor.c:41:10:AM2320_CRC16_2	24	static
+../TestFolder/my_sensor.c:65:6:checkI2cAddress	40	static

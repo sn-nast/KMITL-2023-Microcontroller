@@ -1,0 +1,6 @@
+../TestFolder/my_basic.c:3:6:printOut	2
+../TestFolder/my_basic.c:11:6:printOutLine	1
+../TestFolder/my_basic.c:17:6:delay	1
+../TestFolder/my_basic.c:22:6:receiveUserInput	2
+../TestFolder/my_basic.c:32:5:average8	2
+../TestFolder/my_basic.c:45:5:average16	2

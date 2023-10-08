@@ -1,0 +1,5 @@
+../TestFolder/my_sensor.c:4:6:AM2320_setCommand	1
+../TestFolder/my_sensor.c:12:6:AM2320_startSensor	1
+../TestFolder/my_sensor.c:23:6:AM2320_getTemperatureAndHumidity	3
+../TestFolder/my_sensor.c:41:10:AM2320_CRC16_2	4
+../TestFolder/my_sensor.c:65:6:checkI2cAddress	5
