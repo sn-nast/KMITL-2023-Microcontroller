@@ -1,46 +1,17 @@
-12:18:39 **** Incremental Build of configuration Debug for project Lab06 ****
+21:23:23 **** Incremental Build of configuration Debug for project Lab06 ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'displayNumber':
-../Core/Src/main.c:82:21: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   82 |     sprintf(text, "%u", countNumber);
-      |                    ~^   ~~~~~~~~~~~
-      |                     |   |
-      |                     |   uint32_t {aka long unsigned int}
-      |                     unsigned int
-      |                    %lu
-../Core/Src/main.c:83:18: warning: passing argument 1 of 'printOutLine' makes pointer from integer without a cast [-Wint-conversion]
-   83 |     printOutLine(countNumber);
-      |                  ^~~~~~~~~~~
-      |                  |
-      |                  uint32_t {aka long unsigned int}
-../Core/Src/main.c:73:32: note: expected 'const char *' but argument is of type 'uint32_t' {aka 'long unsigned int'}
-   73 | void printOutLine(const char * text)
-      |                   ~~~~~~~~~~~~~^~~~
-../Core/Src/main.c: In function 'displayTime':
-../Core/Src/main.c:89:24: error: 'count' undeclared (first use in this function)
-   89 |     uint32_t minutes = count / 60;
-      |                        ^~~~~
-../Core/Src/main.c:89:24: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/main.c:92:21: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   92 |     sprintf(text, "%u:%u\r", minutes, seconds);
-      |                    ~^        ~~~~~~~
-      |                     |        |
-      |                     |        uint32_t {aka long unsigned int}
-      |                     unsigned int
-      |                    %lu
-../Core/Src/main.c:92:24: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
-   92 |     sprintf(text, "%u:%u\r", minutes, seconds);
-      |                       ~^              ~~~~~~~
-      |                        |              |
-      |                        unsigned int   uint32_t {aka long unsigned int}
-      |                       %lu
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:151:21: error: 'count' undeclared (first use in this function)
-  151 |       displayNumber(count);
-      |                     ^~~~~
-make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
-"make -j8 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+arm-none-eabi-gcc -o "Lab06.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab06\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab06.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab06.elf
+ 
+arm-none-eabi-size   Lab06.elf 
+arm-none-eabi-objdump -h -S  Lab06.elf  > "Lab06.list"
+   text	   data	    bss	    dec	    hex	filename
+  21576	    100	   3476	  25152	   6240	Lab06.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab06.list
+ 
 
-12:18:40 Build Failed. 3 errors, 4 warnings. (took 1s.38ms)
+21:23:26 Build Finished. 0 errors, 0 warnings. (took 3s.558ms)
 

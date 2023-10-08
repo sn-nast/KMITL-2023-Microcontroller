@@ -60,8 +60,8 @@ all: main-build
 main-build: Lab01.elf secondary-outputs
 
 # Tool invocations
-Lab01.elf Lab01.map: $(OBJS) $(USER_OBJS) D:\A\ My\ Project\01\ KMITL\ Project\MAD_Lab\Lab01\STM32F767ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Lab01.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\MAD_Lab\Lab01\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab01.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Lab01.elf Lab01.map: $(OBJS) $(USER_OBJS) D:\A\ My\ Project\01\ KMITL\ Project\KMITL-2023-S1-Microcontroller\Lab01\STM32F767ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Lab01.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab01\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab01.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

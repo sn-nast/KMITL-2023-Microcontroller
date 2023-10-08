@@ -132,51 +132,19 @@ void setBlueIntensity(float dutyCycle)
 	htim3.Instance -> CCR3 = (10000-1) * dutyCycle;
 }
 
-void controlRgb(char *input)
+// Color struct
+void addIntensity(Color *color)
 {
 	const float MAX_SCALE = 1.0;
 	const float STEP_SCALE = 0.1;
 
-	printOut("input char: ");
-	printOutLine(input);
-
-	if (*input == 'r' || *input == 'R')
+	if (color->intensity >= MAX_SCALE)
 	{
-		if (redIntensity >= MAX_SCALE)
-		{
-			redIntensity = 0.0;
-		} else
-		{
-			redIntensity += STEP_SCALE;
-		}
-		setRedIntensity(redIntensity);
-	} else if (*input == 'g' || *input == 'G')
+		color->intensity = 0.0;
+	} else
 	{
-		if (greenIntensity >= MAX_SCALE)
-		{
-			greenIntensity = 0.0;
-		} else
-		{
-			greenIntensity += STEP_SCALE;
-		}
-		setGreenIntensity(greenIntensity);
-	} else if (*input == 'b' || *input == 'B')
-	{
-		if (blueIntensity >= MAX_SCALE)
-		{
-			blueIntensity = 0.0;
-		} else
-		{
-			blueIntensity += STEP_SCALE;
-		}
-		setBlueIntensity(blueIntensity);
-	} else {
-		printOutLine("\t\t----SKIP----");
+		color->intensity += STEP_SCALE;
 	}
-
-	char text[50];
-	sprintf(text,"R: %.2f \t G: %.2f \t B: %.2f", redIntensity, greenIntensity, blueIntensity);
-	printOutLine(text);
 }
 
 void controlRgb_s(char *input)
@@ -189,33 +157,15 @@ void controlRgb_s(char *input)
 
 	if (*input == 'r' || *input == 'R')
 	{
-		if (red.intensity >= MAX_SCALE)
-		{
-			red.intensity = 0.0;
-		} else
-		{
-			red.intensity += STEP_SCALE;
-		}
+		addIntensity(&red);
 		setRedIntensity(red.intensity);
 	} else if (*input == 'g' || *input == 'G')
 	{
-		if (green.intensity >= MAX_SCALE)
-		{
-			green.intensity = 0.0;
-		} else
-		{
-			green.intensity += STEP_SCALE;
-		}
+		addIntensity(&green);
 		setGreenIntensity(green.intensity);
 	} else if (*input == 'b' || *input == 'B')
 	{
-		if (blue.intensity >= MAX_SCALE)
-		{
-			blue.intensity = 0.0;
-		} else
-		{
-			blue.intensity += STEP_SCALE;
-		}
+		addIntensity(&blue);
 		setBlueIntensity(blue.intensity);
 	} else {
 		printOutLine("\t\t----SKIP----");
@@ -250,24 +200,13 @@ void setColorInfo()
 	blue.pwm = 0;
 }
 
-
-void startPwmRgb()
-{
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
-	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
-
-	setRedIntensity(redIntensity);
-	setGreenIntensity(greenIntensity);
-	setBlueIntensity(blueIntensity);
-}
-
 void startPwmRgb_s()
 {
 	HAL_TIM_PWM_Start(red.timer, red.timerChannel);
 	HAL_TIM_PWM_Start(green.timer, green.timerChannel);
 	HAL_TIM_PWM_Start(blue.timer, blue.timerChannel);
 
+//	Set intensity=0
 	setRedIntensity(red.intensity);
 	setGreenIntensity(green.intensity);
 	setBlueIntensity(blue.intensity);
@@ -275,11 +214,11 @@ void startPwmRgb_s()
 
 void updatePwmRgb_s()
 {
-//	HAL_Delay(100);
 	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
 	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
 	HAL_TIM_PWM_Stop(red.timer, red.timerChannel);
 
+//	not working?
 	red.pwm = (red.pinGroup->IDR & red.pin) >> 6;
 	green.pwm = (green.pinGroup->IDR & green.pin) >> 7;
 	blue.pwm = (blue.pinGroup->IDR & blue.pin) >> 8;
@@ -331,10 +270,8 @@ int main(void)
   dutyCycle = 0.5;
   char input;
 
-//  startPwmRgb();
-
   // Struct
-//  setColorInfo();
+  setColorInfo();
 
   // Interrupt
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
@@ -347,21 +284,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  startPwmRgb_s();
 	  // Q1-2
-	  generatePwm();
-
+//	  generatePwm();
 //	  generatePwm2(0.5);
-//	  printOutLine("\t\t-------TEST-------");
 
-	  // Polling
-//	  receiveUserInput(&input);
-//	  controlRgb(&input);
-//	  controlRgb2(&input);
+	  startPwmRgb_s();
 
+//	  get value from register
 //	  updatePwmRgb_s();
-//	  sprintf(txt, "---AFTER => \tIDR: %X, \tRED: %u \tGREEN: %u \tBLUE: %u", GPIOA->IDR, red.pwm, green.pwm, blue.pwm);
-//	  printOutLine(txt);
   }
   /* USER CODE END 3 */
 }

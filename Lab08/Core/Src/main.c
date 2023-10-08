@@ -78,7 +78,7 @@ typedef struct _StudentInfo
 /* USER CODE BEGIN PV */
 const uint8_t SCREEN_ROTATION = SCREEN_HORIZONTAL_1;
 
-uint32_t count = 0;
+uint32_t countSecondInStudentPage = 0;
 
 const uint16_t BRIGHT_RED = 0xff3c;
 const uint16_t BRIGHT_GREEN = 0xcff9;
@@ -114,7 +114,7 @@ uint16_t convertColorToRgb565(float redIntensity, float greenIntensity, float bl
 
 Rectangle createColorBox(Circle circle)
 {
-	const uint16_t BOX_WIDTH = 150;
+	const uint16_t BOX_WIDTH = 130;
 	const uint16_t BOX_HEIGHT = 20;
 	const uint16_t GAP_X_CIRCLE_AND_BOX = 15;
 
@@ -129,12 +129,12 @@ Rectangle createColorBox(Circle circle)
 
 Rectangle createColorIntensityBar(Rectangle refRectangle, float colorIntensity)
 {
-	const uint16_t BOX_WIDTH = 150;
+//	const uint16_t BOX_WIDTH = 130;
 
 	Rectangle intensityBar = {
 			refRectangle.x0,
 			refRectangle.y0,
-			refRectangle.x0 + (int) (colorIntensity * BOX_WIDTH),
+			refRectangle.x0 + (int) (colorIntensity * (refRectangle.x1 - refRectangle.x0)),
 			refRectangle.y1
 	};
 	return intensityBar;
@@ -285,7 +285,7 @@ void checkTouchHueCircle(ColorInfo *redColor, ColorInfo *greenColor, ColorInfo *
 
 void startTimerInStudentInfoPage()
 {
-	count = 0;
+	countSecondInStudentPage = 0;
 	HAL_TIM_Base_Init(&htim2);
 	HAL_TIM_Base_Start(&htim2);
 	HAL_ADC_Start_IT(&hadc1);
@@ -325,7 +325,7 @@ void drawStudentInfoText(StudentInfo studentInfo, Point endImagePoint, uint16_t 
 
 	Point infoPoint =
 	{
-			endImagePoint.x + 10,
+			endImagePoint.x + 4,
 			50
 	};
 
@@ -354,14 +354,16 @@ void drawStudentInfoPage(StudentInfo studentInfo, ColorInfo colorInfo)
 	uint16_t xPos = 0;
 	uint16_t yPos = 0;
 
+	const uint32_t TIMER_IN_SECOND = 4;
+
 	startTimerInStudentInfoPage();
 
 	int isDisplaying = 1;
 	while (isDisplaying) {
 		char txt[20];
-		sprintf(txt, "Count: %d", (int) count);
-		drawText(txt, 10, 200, 3);
-		if (count > 4)
+//		sprintf(txt, "Count: %d", (int) countSecondInStudentPage);
+//		drawText(txt, 10, 200, 3);
+		if (countSecondInStudentPage > TIMER_IN_SECOND)
 		{
 			isDisplaying = 0;
 		} else if (TP_Touchpad_Pressed())
@@ -422,7 +424,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if(hadc == &hadc1)
 	{
-		count++;
+		countSecondInStudentPage++;
 	};
 }
 
@@ -459,6 +461,7 @@ void HAL_TIM_PeriodElapsedCallback (TIM_HandleTypeDef *htim)
 		drawHumidityTextAtPoint(humidity, humidityPosition);
 	}
 }
+
 
 /* USER CODE END 0 */
 
@@ -530,7 +533,7 @@ int main(void)
 			0
 	};
 
-	Point redPandaImagePoint = { 30, 30 };
+	Point redPandaImagePoint = { 10, 30 };
 	Image redPandaImage = {
 			(const char*) redPandaPic,
 			redPandaImagePoint,
@@ -548,10 +551,10 @@ int main(void)
 
 	StudentInfo myInfo =
 	{
-			"Group No.3",
-			"Natchanon",
-			"Bunyachawaset",
-			"64011113",
+			"Group No.17",
+			"Jiraphat",
+			"Vorasetiri",
+			"64011071",
 			redPandaImage
 	};
   /* USER CODE END 2 */

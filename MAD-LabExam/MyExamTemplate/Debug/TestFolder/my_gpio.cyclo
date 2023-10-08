@@ -1,0 +1,3 @@
+../TestFolder/my_gpio.c:3:6:writePin	1
+../TestFolder/my_gpio.c:8:9:isPinSet	1
+../TestFolder/my_gpio.c:13:9:isPinSetByPinType	1

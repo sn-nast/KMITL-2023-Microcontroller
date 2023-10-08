@@ -48,7 +48,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint32_t count=0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
