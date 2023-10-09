@@ -134,6 +134,9 @@ void addIntensity(Color *color)
 
 void controlRgb_s(char *input)
 {
+	const float MAX_SCALE = 1.0;
+	const float STEP_SCALE = 0.1;
+
 	printOut("input char: ");
 	printOutLine(input);
 
@@ -250,6 +253,7 @@ int main(void)
   //Q1-2
   float dutyCycle = 0.5;
   dutyCycle = 0.5;
+  char input;
 
   // Struct
   setColorInfo();
@@ -267,7 +271,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  // Q1-2
 //	  generatePwm();
-//	  generatePwm2(dutyCycle);
+//	  generatePwm2(0.5);
 
 	  startPwmRgb_s();
 

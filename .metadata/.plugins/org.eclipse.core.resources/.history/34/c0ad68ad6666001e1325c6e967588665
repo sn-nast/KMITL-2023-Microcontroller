@@ -48,6 +48,13 @@
 
 /* USER CODE BEGIN PV */
 uint8_t pwm;
+uint8_t pwmR;
+uint8_t pwmG;
+uint8_t pwmB;
+
+float redIntensity = 0.0;
+float greenIntensity = 0.0;
+float blueIntensity = 0.0;
 
 char rxInput[5];
 
@@ -103,6 +110,14 @@ void printOutLine(const char * text)
 	printOut("\r\n");
 }
 
+void receiveUserInput(char *rxData)
+{
+	while(__HAL_UART_GET_FLAG(&huart3, UART_FLAG_RXNE) == RESET) {}
+	HAL_UART_Receive(&huart3, (uint8_t*) rxData, 1, 100);
+
+	printOutLine(rxData);
+}
+
 void setRedIntensity(float dutyCycle) {
 	htim3.Instance->CCR1 = (10000 - 1) * dutyCycle;
 }
@@ -134,6 +149,9 @@ void addIntensity(Color *color)
 
 void controlRgb_s(char *input)
 {
+	const float MAX_SCALE = 1.0;
+	const float STEP_SCALE = 0.1;
+
 	printOut("input char: ");
 	printOutLine(input);
 
@@ -250,11 +268,12 @@ int main(void)
   //Q1-2
   float dutyCycle = 0.5;
   dutyCycle = 0.5;
+  char input;
 
   // Struct
   setColorInfo();
 
-  // Enable Interrupt
+  // Interrupt
   HAL_UART_Receive_IT(&huart3, (uint8_t*)rxInput, 1);
   /* USER CODE END 2 */
 
@@ -267,11 +286,11 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  // Q1-2
 //	  generatePwm();
-//	  generatePwm2(dutyCycle);
+//	  generatePwm2(0.5);
 
 	  startPwmRgb_s();
 
-	  // get value from register
+//	  get value from register
 //	  updatePwmRgb_s();
   }
   /* USER CODE END 3 */

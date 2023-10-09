@@ -1,10 +1,31 @@
-16:00:41 **** Incremental Build of configuration Debug for project Lab07 ****
+12:42:48 **** Incremental Build of configuration Debug for project Lab07 ****
 make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'controlRgb_s':
+../Core/Src/main.c:138:21: warning: unused variable 'STEP_SCALE' [-Wunused-variable]
+  138 |         const float STEP_SCALE = 0.1;
+      |                     ^~~~~~~~~~
+../Core/Src/main.c:137:21: warning: unused variable 'MAX_SCALE' [-Wunused-variable]
+  137 |         const float MAX_SCALE = 1.0;
+      |                     ^~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:256:8: warning: unused variable 'input' [-Wunused-variable]
+  256 |   char input;
+      |        ^~~~~
+../Core/Src/main.c:254:9: warning: variable 'dutyCycle' set but not used [-Wunused-but-set-variable]
+  254 |   float dutyCycle = 0.5;
+      |         ^~~~~~~~~
+arm-none-eabi-gcc -o "Lab07.elf" @"objects.list"   -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\Lab07\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab07.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab07.elf
+ 
 arm-none-eabi-size   Lab07.elf 
+arm-none-eabi-objdump -h -S  Lab07.elf  > "Lab07.list"
    text	   data	    bss	    dec	    hex	filename
-  40848	    476	   2276	  43600	   aa50	Lab07.elf
+  40944	    476	   2276	  43696	   aab0	Lab07.elf
 Finished building: default.size.stdout
  
+Finished building: Lab07.list
+ 
 
-16:00:42 Build Finished. 0 errors, 0 warnings. (took 634ms)
+12:42:52 Build Finished. 0 errors, 4 warnings. (took 3s.482ms)
 
