@@ -61,8 +61,8 @@ all: main-build
 main-build: MyExamTemplate.elf secondary-outputs
 
 # Tool invocations
-MyExamTemplate.elf MyExamTemplate.map: $(OBJS) $(USER_OBJS) D:\A\ My\ Project\01\ KMITL\ Project\KMITL-2023-S1-Microcontroller\MAD-LabExam\MyExamTemplate\STM32F767ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "MyExamTemplate.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\MAD-LabExam\MyExamTemplate\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MyExamTemplate.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+MyExamTemplate.elf MyExamTemplate.map: $(OBJS) $(USER_OBJS) D:\A\ My\ Project\01\ KMITL\ Project\KMITL-2023-S1-Microcontroller\64011113_exam\MyExamTemplate\STM32F767ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "MyExamTemplate.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\A My Project\01 KMITL Project\KMITL-2023-S1-Microcontroller\64011113_exam\MyExamTemplate\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MyExamTemplate.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

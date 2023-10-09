@@ -20,6 +20,7 @@
 #include "main.h"
 #include "adc.h"
 #include "i2c.h"
+#include "spi.h"
 #include "tim.h"
 #include "usart.h"
 #include "usb_otg.h"
@@ -97,6 +98,7 @@ int main(void)
   MX_TIM8_Init();
   MX_ADC1_Init();
   MX_ADC3_Init();
+  MX_SPI5_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
