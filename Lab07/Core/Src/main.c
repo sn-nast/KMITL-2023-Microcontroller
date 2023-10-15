@@ -104,17 +104,17 @@ void printOutLine(const char * text)
 }
 
 void setRedIntensity(float dutyCycle) {
-	htim3.Instance->CCR1 = (10000 - 1) * dutyCycle;
+	htim4.Instance->CCR1 = (10000 - 1) * dutyCycle;
 }
 
 void setGreenIntensity(float dutyCycle)
 {
-	htim3.Instance -> CCR2 = (10000-1) * dutyCycle;
+	htim4.Instance -> CCR2 = (10000-1) * dutyCycle;
 }
 
 void setBlueIntensity(float dutyCycle)
 {
-	htim3.Instance -> CCR3 = (10000-1) * dutyCycle;
+	htim4.Instance -> CCR3 = (10000-1) * dutyCycle;
 }
 
 // Color struct
@@ -160,24 +160,24 @@ void controlRgb_s(char *input)
 
 void setColorInfo()
 {
-	red.timer = &htim3;
+	red.timer = &htim4;
 	red.timerChannel = TIM_CHANNEL_1;
-	red.pinGroup = GPIOA;
-	red.pin = GPIO_PIN_6;
+	red.pinGroup = GPIOD;
+	red.pin = GPIO_PIN_12;
 	red.intensity = 0.0;
 	red.pwm = 0;
 
-	green.timer = &htim3;
+	green.timer = &htim4;
 	green.timerChannel = TIM_CHANNEL_2;
-	green.pinGroup = GPIOA;
-	green.pin = GPIO_PIN_7;
+	green.pinGroup = GPIOD;
+	green.pin = GPIO_PIN_13;
 	green.intensity = 0.0;
 	green.pwm = 0;
 
-	blue.timer = &htim3;
+	blue.timer = &htim4;
 	blue.timerChannel = TIM_CHANNEL_3;
-	blue.pinGroup = GPIOC;
-	blue.pin = GPIO_PIN_8;
+	blue.pinGroup = GPIOD;
+	blue.pin = GPIO_PIN_14;
 	blue.intensity = 0.0;
 	blue.pwm = 0;
 }
@@ -245,6 +245,7 @@ int main(void)
   MX_TIM2_Init();
   MX_USART3_UART_Init();
   MX_TIM3_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 
   //Q1-2

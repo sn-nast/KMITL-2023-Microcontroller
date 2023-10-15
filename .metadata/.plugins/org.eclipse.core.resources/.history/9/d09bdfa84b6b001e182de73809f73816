@@ -1,0 +1,27 @@
+/*
+ * joystick.h
+ *
+ *  Created on: Oct 15, 2023
+ *      Author: sunsu
+ */
+
+#ifndef JOYSTICK_H_
+#define JOYSTICK_H_
+
+#include "adc.h"
+#include "my_lcd.h"
+
+
+typedef struct _JoyStick {
+	ADC_HandleTypeDef *adc;
+
+
+};
+
+ADC_HandleTypeDef *JOYSTICK_ADC = &hadc3;
+
+void startJoystick(uint32_t *positionArray);
+void controlPlayer();
+
+
+#endif /* JOYSTICK_H_ */

@@ -1,0 +1,20 @@
+/*
+ * joystick.c
+ *
+ *  Created on: Oct 15, 2023
+ *      Author: sunsu
+ */
+#include "joystick.h"
+#include "my_basic.h"
+
+void startJoystick(uint32_t *positionArray)
+{
+	HAL_ADC_Start_DMA(JOYSTICK_ADC, positionArray, 2);
+}
+
+void controlPlayer()
+{
+
+}
+
+void move(uint32_t *positionArray)

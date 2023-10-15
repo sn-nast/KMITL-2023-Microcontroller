@@ -1,0 +1,11 @@
+../MyLib/my_basic.c:5:6:printOut	16	static
+../MyLib/my_basic.c:13:6:printOutLine	16	static
+../MyLib/my_basic.c:19:6:delay	16	static
+../MyLib/my_basic.c:24:6:receiveUserInput	16	static
+../MyLib/my_basic.c:36:5:average8	16	static
+../MyLib/my_basic.c:49:5:average16	16	static
+../MyLib/my_basic.c:64:6:AM2320_setCommand	16	static
+../MyLib/my_basic.c:72:6:AM2320_startSensor	40	static
+../MyLib/my_basic.c:83:6:AM2320_getTemperatureAndHumidity	72	static
+../MyLib/my_basic.c:102:10:AM2320_CRC16_2	24	static
+../MyLib/my_basic.c:126:6:checkI2cAddress	40	static

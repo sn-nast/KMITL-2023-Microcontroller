@@ -1,0 +1,75 @@
+#include "icons.h"
+
+Image playerIcon_1 =
+{
+		(const char*) player1Image,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image playerIcon_2 =
+{
+		(const char*) player2Image,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image playerIcon_3 =
+{
+		(const char*) bomberManImage,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image bombIcon =
+{
+		(const char*) bombImage,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image wallIcon_1 =
+{
+		(const char*) wallImage1,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+Image wallIcon_2 =
+{
+		(const char*) wallImage2,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image heartIcon =
+{
+		(const char*) heartImage,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image shoeIcon =
+{
+		(const char*) shoeImage,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image potionIcon =
+{
+		(const char*) potionImage,
+		{10, 10},
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image burstIcon;
+

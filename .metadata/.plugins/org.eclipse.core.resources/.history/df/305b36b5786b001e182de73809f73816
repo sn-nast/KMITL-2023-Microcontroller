@@ -1,0 +1,21 @@
+#ifndef ICONS_H_
+#define ICONS_H_
+
+#include "my_lcd.h"
+
+const uint8_t ICON_HEIGHT = 16;
+const uint8_t ICON_WIDTH = 16;
+
+extern Image playerIcon_1;
+extern Image playerIcon_2;
+extern Image playerIcon_3;
+extern Image bombIcon;
+extern Image wallIcon_1;
+extern Image wallIcon_2;
+extern Image heartIcon;
+extern Image shoeIcon;
+extern Image potionIcon;
+extern Image burstIcon;
+
+
+#endif /* ICONS_H_ */

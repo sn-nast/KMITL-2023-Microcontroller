@@ -1,0 +1,6 @@
+../Core/Src/stm32f7xx_it.c:73:6:SysTick_Handler	1
+../Core/Src/stm32f7xx_it.c:94:6:ADC_IRQHandler	1
+../Core/Src/stm32f7xx_it.c:109:6:TIM3_IRQHandler	1
+../Core/Src/stm32f7xx_it.c:123:6:I2C1_EV_IRQHandler	1
+../Core/Src/stm32f7xx_it.c:137:6:I2C1_ER_IRQHandler	1
+../Core/Src/stm32f7xx_it.c:151:6:DMA2_Stream0_IRQHandler	1

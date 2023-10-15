@@ -1,0 +1,82 @@
+/*
+ * icons.c
+ *
+ *  Created on: Oct 15, 2023
+ *      Author: sunsu
+ */
+
+#include "icons.h"
+
+Image playerIcon_1 =
+{
+		(const char*) player1Image,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image playerIcon_2 =
+{
+		(const char*) player2Image,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image playerIcon_3 =
+{
+		(const char*) bomberManPicture,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image bombIcon =
+{
+		(const char*) bombImage,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image wallIcon_1 =
+{
+		(const char*) wallImage1,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+Image wallIcon_2 =
+{
+		(const char*) wallImage2,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image heartIcon =
+{
+		(const char*) heartIcon,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image shoeIcon =
+{
+		(const char*) shoeImage,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image potionIcon =
+{
+		(const char*) potionPicture,
+		defaultIconPoint,
+		ICON_WIDTH,
+		ICON_HEIGHT
+};
+
+Image burstIcon;
+

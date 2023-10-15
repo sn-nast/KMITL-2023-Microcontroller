@@ -1,0 +1,28 @@
+/*
+ * joystick.h
+ *
+ *  Created on: Oct 15, 2023
+ *      Author: sunsu
+ */
+
+#ifndef JOYSTICK_H_
+#define JOYSTICK_H_
+
+#include "adc.h"
+#include "my_lcd.h"
+
+typedef struct _Joystick
+{
+	ADC_HandleTypeDef *adc;
+	GpioInfo gpioX;
+	GpioInfo gpioY;
+} Joystick;
+
+extern ADC_HandleTypeDef *JOYSTICK_ADC;
+extern Joystick joystickA;
+extern Joystick joystickB;
+
+void startJoystick(uint32_t *positionArray);
+void drawPlayer(Point position);
+
+#endif /* JOYSTICK_H_ */

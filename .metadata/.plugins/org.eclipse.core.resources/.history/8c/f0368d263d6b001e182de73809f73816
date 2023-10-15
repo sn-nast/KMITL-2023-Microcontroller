@@ -1,0 +1,13 @@
+/*
+ * joystick.c
+ *
+ *  Created on: Oct 15, 2023
+ *      Author: sunsu
+ */
+#include "joystick.h"
+
+void startJoystick()
+{
+	HAL_ADC_Start_DMA(JOYSTICK_ADC, VR, 2);
+}
+

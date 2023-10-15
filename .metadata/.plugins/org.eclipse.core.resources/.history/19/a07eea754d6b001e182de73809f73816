@@ -1,0 +1,31 @@
+/*
+ * joystick.c
+ *
+ *  Created on: Oct 15, 2023
+ *      Author: sunsu
+ */
+#include "joystick.h"
+
+ADC_HandleTypeDef *JOYSTICK_ADC = &hadc3;
+
+Joystick joystickA = {
+		JOYSTICK_ADC,
+		{GPIOF, GPIO_PIN_3 },
+		{GPIOF, GPIO_PIN_4},
+};
+
+Joystick joystickB = {
+		JOYSTICK_ADC,
+		{GPIOF, GPIO_PIN_3 },
+		{GPIOF, GPIO_PIN_4},
+};
+void startJoystick(uint32_t *positionArray)
+{
+	HAL_ADC_Start_DMA(JOYSTICK_ADC, positionArray, 2);
+}
+
+void controlPlayer()
+{
+
+}
+

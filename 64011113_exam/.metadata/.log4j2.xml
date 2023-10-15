@@ -2,7 +2,7 @@
 <Configuration status="info">
     <ThresholdFilter level="INFO"/>
     <Appenders>
-        <RollingFile name="DEBUGFILE" fileName="D:/A My Project/01 KMITL Project/KMITL-2023-S1-Microcontroller/MAD-LabExam/.metadata/.ide.log" filePattern="D:/A My Project/01 KMITL Project/KMITL-2023-S1-Microcontroller/MAD-LabExam/.metadata/.ide.log-%d{yyyy-MM-dd}.log">
+        <RollingFile name="DEBUGFILE" fileName="D:/A My Project/01 KMITL Project/KMITL-2023-S1-Microcontroller/64011113_exam/.metadata/.ide.log" filePattern="D:/A My Project/01 KMITL Project/KMITL-2023-S1-Microcontroller/64011113_exam/.metadata/.ide.log-%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} [%p] %c{1}:%L - %m%n" />
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />

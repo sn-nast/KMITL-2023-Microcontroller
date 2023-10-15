@@ -6,8 +6,15 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="countSecondInStudentPage"/>
+		<item key="selection" value="drawF"/>
 		<list key="findhistory">
+			<item value="Image"/>
+			<item value="icons."/>
+			<item value="drawF"/>
+			<item value=".pin"/>
+			<item value="blueIntensity"/>
+			<item value="pwmB"/>
+			<item value="receiveUserInput"/>
 			<item value="countSecondInStudentPage"/>
 			<item value="position_array"/>
 			<item value="start"/>
@@ -16,23 +23,16 @@
 			<item value="getto"/>
 			<item value="gett"/>
 			<item value="testt"/>
-			<item value="checkH"/>
-			<item value="check"/>
-			<item value="drawColorInfoPage"/>
-			<item value="temp"/>
-			<item value="poten"/>
-			<item value="get"/>
-			<item value="print"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1149"/>
-		<item key="DIALOG_Y_ORIGIN" value="243"/>
+		<item key="DIALOG_X_ORIGIN" value="1452"/>
+		<item key="DIALOG_Y_ORIGIN" value="315"/>
 		<item key="DIALOG_WIDTH" value="414"/>
-		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_HEIGHT" value="460"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>
