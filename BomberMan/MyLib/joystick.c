@@ -22,9 +22,9 @@ void startJoystick(uint32_t *positionArray)
 
 enum MoveDirection convertToDirection(uint32_t *positionArray)
 {
-	static uint16_t MIN = 0;
-	static uint16_t MAX = 4096;
-	static uint16_t HALF = 4096 / 2;
+//	static uint16_t MIN = 0;
+//	static uint16_t MAX = 4096;
+//	static uint16_t HALF = 4096 / 2;
 	static uint16_t MIN_HALF = 4096 / 4;
 	static uint16_t MAX_HALF = 3 * (4096 / 4);
 

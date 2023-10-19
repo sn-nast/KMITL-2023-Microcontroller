@@ -29,7 +29,17 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "stdio.h"
+#include "string.h"
 
+#include "ILI9341_Touchscreen.h"
+#include "ILI9341_STM32_Driver.h"
+#include "ILI9341_GFX.h"
+
+#include "icons.h"
+#include "my_lcd.h"
+#include "my_basic.h"
+#include "my_picture.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,7 +71,61 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+uint8_t isTouchWithinRectangle(uint16_t rSXPos, uint16_t rSYPos,uint16_t rEXPos, uint16_t rEYPos , uint16_t xPos, uint16_t yPos)
+{
+	if (xPos >= rSXPos && xPos <= rEXPos && yPos <= rEYPos && yPos >= rSYPos)
+	{
+		return 1;
+	} else
+	{
+		return 0;
+	}
 
+}
+
+void drawStartScreen()
+{
+  	Image playerIcon = playerIcon_1_32;
+	ILI9341_Fill_Screen(WHITE);
+	drawImage((const char *)&winPage, SCREEN_ROTATION);
+	ILI9341_Draw_Text("BOMBER MAN", 75, 10, BLACK, 3, WHITE);
+	//Draw background
+	ILI9341_Draw_Filled_Rectangle_Coord(10, 38, 310, 78, CYAN);
+	ILI9341_Draw_Filled_Rectangle_Coord(10, 88, 310, 141, YELLOW);
+	ILI9341_Draw_Filled_Rectangle_Coord(10, 148, 310, 205, GREEN);
+	//Choose number of player box
+	ILI9341_Draw_Text("Choose Number Of Player", 96, 42, BLACK, 1, CYAN);
+	ILI9341_Draw_Hollow_Rectangle_Coord(100, 55, 160, 72, BLUE);
+	ILI9341_Draw_Hollow_Rectangle_Coord(170, 55, 230, 72, BLUE);
+	ILI9341_Draw_Text("1 Player", 108, 60, BLUE, 1, CYAN);
+	ILI9341_Draw_Text("2 Player", 177, 60, BLUE, 1, CYAN);
+	//Choose player box (from 5 player) (size: 32*32)
+	ILI9341_Draw_Text("Choose Player", 125, 90, BLACK, 1, YELLOW);
+//  			ILI9341_Draw_Filled_Rectangle_Coord(50, 102, 82, 134, RED);
+//  			ILI9341_Draw_Filled_Rectangle_Coord(97, 102, 129, 134, RED);
+//  			ILI9341_Draw_Filled_Rectangle_Coord(144, 102, 176, 134, RED);
+//  			ILI9341_Draw_Filled_Rectangle_Coord(191, 102, 223, 134, RED);
+//  			ILI9341_Draw_Filled_Rectangle_Coord(238, 102, 270, 134, RED);
+	playerIcon.drawPoint.x = 50;
+	playerIcon.drawPoint.y = 102;
+	drawImageAtPoint(playerIcon, SCREEN_ROTATION);
+	playerIcon.drawPoint.x = 97;
+	drawImageAtPoint(playerIcon, SCREEN_ROTATION);
+	playerIcon.drawPoint.x = 144;
+	drawImageAtPoint(playerIcon, SCREEN_ROTATION);
+	playerIcon.drawPoint.x = 191;
+	drawImageAtPoint(playerIcon, SCREEN_ROTATION);
+//	playerIcon.drawPoint.x = 200;
+//	drawImageAtPoint(playerIcon, SCREEN_ROTATION);
+	//Choose map box (from 3 player) (size: 32*32)
+	ILI9341_Draw_Text("Choose Map", 135, 152, BLACK, 1, GREEN);
+	ILI9341_Draw_Filled_Rectangle_Coord(95, 165, 127, 197, RED);
+	ILI9341_Draw_Filled_Rectangle_Coord(142, 165, 174, 197, RED);
+	ILI9341_Draw_Filled_Rectangle_Coord(189, 165, 221, 197, RED);
+	//Play button
+	ILI9341_Draw_Filled_Rectangle_Coord(140, 215, 185, 230, PINK);
+	ILI9341_Draw_Text("PLAY", 152, 218, WHITE, 1, PINK);
+}
 /* USER CODE END 0 */
 
 /**
@@ -109,18 +173,222 @@ int main(void)
   MX_USART3_UART_Init();
   MX_ADC3_Init();
   /* USER CODE BEGIN 2 */
-
+  ILI9341_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
+  	/* USER CODE BEGIN WHILE */
 
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+	int displayScreen = 0;
+	int mapID = 0;
+	int selectNumberPlayer[2] = {0,0};
+	int numberPositionX[2] = {100,170};
+	int selectPlayer[5] = {0,0,0,0,0};
+	int playerPositionX[5] = {50,97,144,191,238};
+	int selectMap[3] = {0,0,0};
+	int mapPositionX[3] = {95,142,189};
+	int checkPlay = 1;
+	const uint8_t SCREEN_ROTATION = SCREEN_HORIZONTAL_1;
+
+
+	uint16_t xPos = 0;
+	uint16_t yPos = 0;
+	ILI9341_Set_Rotation(SCREEN_HORIZONTAL_1);
+	ILI9341_Fill_Screen(WHITE);
+	while (1) {
+		/* USER CODE END WHILE */
+
+		/* USER CODE BEGIN 3 */
+		if(displayScreen==0){
+			ILI9341_Fill_Screen(WHITE);
+			ILI9341_Draw_Text("BOMBER MAN", 75, 10, BLACK, 3, WHITE);
+			//Draw background
+			ILI9341_Draw_Filled_Rectangle_Coord(10, 38, 310, 78, CYAN);
+			ILI9341_Draw_Filled_Rectangle_Coord(10, 88, 310, 141, YELLOW);
+			ILI9341_Draw_Filled_Rectangle_Coord(10, 148, 310, 205, GREEN);
+			//Choose number of player box
+			ILI9341_Draw_Text("Choose Number Of Player", 96, 42, BLACK, 1, CYAN);
+		//			ILI9341_Draw_Hollow_Rectangle_Coord(100, 55, 160, 72, BLUE);
+		//			ILI9341_Draw_Hollow_Rectangle_Coord(170, 55, 230, 72, BLUE);
+		//			ILI9341_Draw_Text("1 Player", 108, 60, BLUE, 1, CYAN);
+		//			ILI9341_Draw_Text("2 Player", 177, 60, BLUE, 1, CYAN);
+			//Choose player box (from 5 player) (size: 32*32)
+			ILI9341_Draw_Text("Choose Player", 125, 90, BLACK, 1, YELLOW);
+			ILI9341_Draw_Filled_Rectangle_Coord(50, 102, 82, 134, RED);
+			ILI9341_Draw_Filled_Rectangle_Coord(97, 102, 129, 134, RED);
+			ILI9341_Draw_Filled_Rectangle_Coord(144, 102, 176, 134, RED);
+			ILI9341_Draw_Filled_Rectangle_Coord(191, 102, 223, 134, RED);
+			ILI9341_Draw_Filled_Rectangle_Coord(238, 102, 270, 134, RED);
+			//Choose map box (from 3 player) (size: 32*32)
+			ILI9341_Draw_Text("Choose Map", 135, 152, BLACK, 1, GREEN);
+			ILI9341_Draw_Filled_Rectangle_Coord(95, 165, 127, 197, RED);
+			ILI9341_Draw_Filled_Rectangle_Coord(142, 165, 174, 197, RED);
+			ILI9341_Draw_Filled_Rectangle_Coord(189, 165, 221, 197, RED);
+			//Play button
+			ILI9341_Draw_Filled_Rectangle_Coord(140, 215, 185, 230, PINK);
+			ILI9341_Draw_Text("PLAY", 152, 218, WHITE, 1, PINK);
+			//Draw Players
+			Image image = playerIcon_1_32;
+
+			drawImageAtPoint(image, SCREEN_HORIZONTAL_1);
+			//Check when user choose
+			if (TP_Touchpad_Pressed())
+			{
+				uint16_t position_array[2];
+				if (TP_Read_Coordinates(position_array) == TOUCHPAD_DATA_OK)
+				{
+					if (SCREEN_ROTATION == SCREEN_HORIZONTAL_1)
+					{
+						xPos = position_array[1];
+						yPos = SCREEN_HEIGHT - position_array[0];
+					} else if (SCREEN_ROTATION == SCREEN_HORIZONTAL_2)
+					{
+						xPos = SCREEN_WIDTH - position_array[1];
+						yPos = position_array[0];
+					}
+				}
+
+			}
+			//Number Box
+			for(int i=0;i <2; i++){
+				if (isTouchWithinRectangle(numberPositionX[i], 55, numberPositionX[i]+60, 72, xPos, yPos)){
+					selectNumberPlayer[i]=1;
+					for(int j=0;j <2; j++){
+						if(j==i)
+							continue;
+						selectNumberPlayer[j]=0;
+					}
+				}
+			}
+			//Player Box
+			for(int i=0;i <5; i++){
+				if (isTouchWithinRectangle(playerPositionX[i], 102, playerPositionX[i]+32, 102+32, xPos, yPos)){
+					selectPlayer[i]=1;
+					for(int j=0;j <5; j++){
+						if(j==i)
+							continue;
+						selectPlayer[j]=0;
+					}
+				}
+			}
+			//Map Box
+			for(int i=0;i <3; i++){
+				if (isTouchWithinRectangle(mapPositionX[i], 165, mapPositionX[i]+32, 165+32, xPos, yPos)){
+					selectMap[i]=1;
+					for(int j=0;j <3; j++){
+						if(j==i)
+							continue;
+						selectMap[j]=0;
+					}
+				}
+			}
+			//Check Button press
+			if (isTouchWithinRectangle(140, 215, 140+45, 215+15, xPos, yPos)){
+				for(int i=0;i <2; i++){
+					if(selectNumberPlayer[i]==1){
+						checkPlay++;
+						break;
+					}
+
+				}
+				for(int i=0;i <5; i++){
+					if(selectPlayer[i]==1){
+						checkPlay++;
+						break;
+					}
+				}
+				for(int i=0;i <3; i++){
+					if(selectMap[i]==1){
+						checkPlay++;
+						break;
+					}
+				}
+				if(checkPlay==3)
+					displayScreen=1;
+				else
+					checkPlay=0;
+			}
+
+
+			//Display when user choose
+			for(int i=0;i <2; i++){
+				if(selectNumberPlayer[i]){
+					ILI9341_Draw_Filled_Rectangle_Coord(numberPositionX[i], 55, numberPositionX[i]+60 , 72, BLUE);
+					if(i==0)
+						ILI9341_Draw_Text("1 Player", 108, 60, WHITE, 1, BLUE);
+					else
+						ILI9341_Draw_Text("2 Player", 177, 60, WHITE, 1, BLUE);
+				}
+				else{
+					ILI9341_Draw_Filled_Rectangle_Coord(numberPositionX[i], 55, numberPositionX[i]+60 , 72, CYAN);
+					ILI9341_Draw_Hollow_Rectangle_Coord(numberPositionX[i], 55, numberPositionX[i]+60 , 72, BLUE);
+					if(i==0)
+						ILI9341_Draw_Text("1 Player", 108, 60, BLUE, 1, CYAN);
+					else
+						ILI9341_Draw_Text("2 Player", 177, 60, BLUE, 1, CYAN);
+				}
+			}
+			for(int i=0;i <5; i++){
+				if(selectPlayer[i])
+					ILI9341_Draw_Hollow_Rectangle_Coord(playerPositionX[i]-2, 102-2, playerPositionX[i]+32+2 , 102+32+2, RED);
+				else
+					ILI9341_Draw_Hollow_Rectangle_Coord(playerPositionX[i]-2, 102-2, playerPositionX[i]+32+2 , 102+32+2, YELLOW);
+			}
+			for(int i=0;i <3; i++){
+				if(selectMap[i])
+					ILI9341_Draw_Hollow_Rectangle_Coord(mapPositionX[i]-2, 165-2, mapPositionX[i]+32+2 , 165+32+2, RED);
+				else
+					ILI9341_Draw_Hollow_Rectangle_Coord(mapPositionX[i]-2, 165-2, mapPositionX[i]+32+2 , 165+32+2, GREEN);
+			}
+			HAL_Delay(200);
+		}
+		if(displayScreen==1){
+			ILI9341_Fill_Screen(BLACK);
+		}
+		if(displayScreen==2){
+			ILI9341_Fill_Screen(WHITE);
+			ILI9341_Draw_Filled_Rectangle_Coord(100, 25, 212 , 137, RED);
+			ILI9341_Draw_Filled_Rectangle_Coord(90, 142, 222 , 170, YELLOW);
+			ILI9341_Draw_Text("WINNER", 104, 143, BLUE, 3, YELLOW);
+			ILI9341_Draw_Filled_Rectangle_Coord(55, 175, 150 , 200, GREEN);
+			ILI9341_Draw_Text("<REPLAY", 60, 179, BLACK, 2, GREEN);
+			ILI9341_Draw_Filled_Rectangle_Coord(155, 175, 250 , 200, CYAN);
+			ILI9341_Draw_Text("NEXT>", 175, 179, BLACK, 2, CYAN);
+			ILI9341_Draw_Filled_Rectangle_Coord(108, 205, 203 , 230, ORANGE);
+			ILI9341_Draw_Text("EXIT", 133, 209, RED, 2, ORANGE);
+			if (TP_Touchpad_Pressed())
+					{
+						uint16_t position_array[2];
+						if (TP_Read_Coordinates(position_array) == TOUCHPAD_DATA_OK)
+						{
+							if (SCREEN_ROTATION == SCREEN_HORIZONTAL_1)
+							{
+								xPos = position_array[1];
+								yPos = SCREEN_HEIGHT - position_array[0];
+							} else if (SCREEN_ROTATION == SCREEN_HORIZONTAL_2)
+							{
+								xPos = SCREEN_WIDTH - position_array[1];
+								yPos = position_array[0];
+							}
+						}
+
+					}
+			if (isTouchWithinRectangle(55, 175, 150, 200, xPos, yPos)){
+				displayScreen = 1;
+				mapID = 0;
+			}
+			if (isTouchWithinRectangle(155, 175, 250, 200, xPos, yPos)){
+				displayScreen = 1;
+				mapID++;
+			}
+			if (isTouchWithinRectangle(108, 205, 203, 230, xPos, yPos)){
+				displayScreen = 0;
+				mapID++;
+			}
+			HAL_Delay(200);
+		}
+	}
+  	/* USER CODE END 3 */
 }
 
 /**

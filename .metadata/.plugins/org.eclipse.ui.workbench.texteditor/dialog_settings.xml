@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="drawF"/>
+		<item key="selection" value="Buffer"/>
 		<list key="findhistory">
+			<item value="buffer"/>
 			<item value="Image"/>
 			<item value="icons."/>
 			<item value="drawF"/>
@@ -22,7 +23,6 @@
 			<item value="getTouchPosition"/>
 			<item value="getto"/>
 			<item value="gett"/>
-			<item value="testt"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

@@ -1,0 +1,25 @@
+#ifndef ICONS_H_
+#define ICONS_H_
+
+#include "my_lcd.h"
+
+#define ICON_WIDTH  ((uint8_t) 16)
+#define ICON_HEIGHT ((uint8_t) 16)
+#define BURST_AREA_ICON 0xF800
+
+extern Image playerIcon_1;
+extern Image playerIcon_2;
+extern Image playerIcon_3;
+extern Image bombIcon;
+extern Image wallIcon_1;
+extern Image wallIcon_2;
+extern Image heartIcon;
+extern Image shoeIcon;
+extern Image potionIcon;
+extern Image burstIcon;
+
+extern Image playerIcon_1_16;
+extern Image playerIcon_1_32;
+extern Image playerIcon_1_112;
+
+#endif /* ICONS_H_ */
