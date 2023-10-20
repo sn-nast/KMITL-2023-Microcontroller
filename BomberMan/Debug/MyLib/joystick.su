@@ -1,0 +1,4 @@
+../MyLib/joystick.c:18:6:startJoystick	16	static
+../MyLib/joystick.c:23:20:convertToDirection	24	static
+../MyLib/joystick.c:54:6:drawPlayer	32	static
+../MyLib/joystick.c:61:6:drawBurstArea	24	static

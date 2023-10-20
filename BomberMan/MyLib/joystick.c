@@ -53,8 +53,9 @@ enum MoveDirection convertToDirection(uint32_t *positionArray)
 
 void drawPlayer(Point position)
 {
-	playerIcon_1.drawPoint = position;
-	drawImageAtPoint(playerIcon_1, SCREEN_ROTATION);
+	Image playerIcon = playerIcon1;
+	playerIcon.drawPoint = position;
+	drawImageAtPoint(playerIcon, SCREEN_ROTATION);
 }
 
 void drawBurstArea(Point position)

@@ -85,7 +85,7 @@ uint8_t isTouchWithinRectangle(uint16_t rSXPos, uint16_t rSYPos,uint16_t rEXPos,
 
 void drawStartScreen()
 {
-  	Image playerIcon = playerIcon_1_32;
+  	Image playerIcon = playerIcon1;
 	ILI9341_Fill_Screen(WHITE);
 	drawImage((const char *)&winPage, SCREEN_ROTATION);
 	ILI9341_Draw_Text("BOMBER MAN", 75, 10, BLACK, 3, WHITE);
@@ -208,10 +208,10 @@ int main(void)
 			ILI9341_Draw_Filled_Rectangle_Coord(10, 148, 310, 205, GREEN);
 			//Choose number of player box
 			ILI9341_Draw_Text("Choose Number Of Player", 96, 42, BLACK, 1, CYAN);
-		//			ILI9341_Draw_Hollow_Rectangle_Coord(100, 55, 160, 72, BLUE);
-		//			ILI9341_Draw_Hollow_Rectangle_Coord(170, 55, 230, 72, BLUE);
-		//			ILI9341_Draw_Text("1 Player", 108, 60, BLUE, 1, CYAN);
-		//			ILI9341_Draw_Text("2 Player", 177, 60, BLUE, 1, CYAN);
+			ILI9341_Draw_Hollow_Rectangle_Coord(100, 55, 160, 72, BLUE);
+			ILI9341_Draw_Hollow_Rectangle_Coord(170, 55, 230, 72, BLUE);
+			ILI9341_Draw_Text("1 Player", 108, 60, BLUE, 1, CYAN);
+			ILI9341_Draw_Text("2 Player", 177, 60, BLUE, 1, CYAN);
 			//Choose player box (from 5 player) (size: 32*32)
 			ILI9341_Draw_Text("Choose Player", 125, 90, BLACK, 1, YELLOW);
 			ILI9341_Draw_Filled_Rectangle_Coord(50, 102, 82, 134, RED);
@@ -228,9 +228,9 @@ int main(void)
 			ILI9341_Draw_Filled_Rectangle_Coord(140, 215, 185, 230, PINK);
 			ILI9341_Draw_Text("PLAY", 152, 218, WHITE, 1, PINK);
 			//Draw Players
-			Image image = playerIcon_1_32;
+			Image player1 = playerIcon1;
 
-			drawImageAtPoint(image, SCREEN_HORIZONTAL_1);
+			drawImageAtPoint(player1, SCREEN_HORIZONTAL_1);
 			//Check when user choose
 			if (TP_Touchpad_Pressed())
 			{

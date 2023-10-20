@@ -1,0 +1,4 @@
+../MyLib/joystick.c:18:6:startJoystick	1
+../MyLib/joystick.c:23:20:convertToDirection	5
+../MyLib/joystick.c:54:6:drawPlayer	1
+../MyLib/joystick.c:61:6:drawBurstArea	1

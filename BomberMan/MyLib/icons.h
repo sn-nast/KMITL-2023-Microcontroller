@@ -1,25 +1,25 @@
 #ifndef ICONS_H_
 #define ICONS_H_
 
- #include "my_lcd.h"
+#include "my_lcd.h"
 
 #define ICON_WIDTH ((uint8_t)16)
 #define ICON_HEIGHT ((uint8_t)16)
 #define BURST_AREA_ICON 0xF800
 
-//typedef struct _Point
+// typedef struct _Point
 //{
-//	uint8_t x;
-//	uint8_t y;
-//} Point;
+//   uint8_t x;
+//   uint8_t y;
+// } Point;
 //
-//typedef struct _Image
+// typedef struct _Image
 //{
-//	const char *imageArray;
-//	Point drawPoint;
-//	uint16_t width;
-//	uint16_t height;
-//} Image;
+//   const char *imageArray;
+//   Point drawPoint;
+//   uint16_t width;
+//   uint16_t height;
+// } Image;
 
 extern Image playerIcon1;
 extern Image playerIcon2;
