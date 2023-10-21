@@ -5453,15 +5453,25 @@ Discarded input sections
                 0x0000000000000000      0x800 ./MyLib/icons.o
  .rodata.playerImage5Yellow_32
                 0x0000000000000000      0x800 ./MyLib/icons.o
- .rodata.playerImage1Yellow_112
+ .rodata.playerImage1Orange_32
+                0x0000000000000000      0x800 ./MyLib/icons.o
+ .rodata.playerImage2Orange_32
+                0x0000000000000000      0x800 ./MyLib/icons.o
+ .rodata.playerImage3Orange_32
+                0x0000000000000000      0x800 ./MyLib/icons.o
+ .rodata.playerImage4Orange_32
+                0x0000000000000000      0x800 ./MyLib/icons.o
+ .rodata.playerImage5Orange_32
+                0x0000000000000000      0x800 ./MyLib/icons.o
+ .rodata.playerImage1_112
                 0x0000000000000000     0x6200 ./MyLib/icons.o
  .rodata.playerImage2Yellow_112
                 0x0000000000000000     0x6200 ./MyLib/icons.o
  .rodata.playerImage3Yellow_112
                 0x0000000000000000     0x6200 ./MyLib/icons.o
- .rodata.playerImage4Yellow_112
+ .rodata.playerImage4_112
                 0x0000000000000000     0x6200 ./MyLib/icons.o
- .rodata.playerImage5Yellow_112
+ .rodata.playerImage5_112
                 0x0000000000000000     0x6200 ./MyLib/icons.o
  .rodata.bombImage
                 0x0000000000000000      0x200 ./MyLib/icons.o
@@ -5474,6 +5484,8 @@ Discarded input sections
  .rodata.wallImage1
                 0x0000000000000000      0x200 ./MyLib/icons.o
  .rodata.wallImage2
+                0x0000000000000000      0x200 ./MyLib/icons.o
+ .rodata.grassImage
                 0x0000000000000000      0x200 ./MyLib/icons.o
  .rodata.winPage
                 0x0000000000000000    0x25800 ./MyLib/icons.o
@@ -5494,6 +5506,16 @@ Discarded input sections
  .data.playerIcon4Yellow_32
                 0x0000000000000000        0xc ./MyLib/icons.o
  .data.playerIcon5Yellow_32
+                0x0000000000000000        0xc ./MyLib/icons.o
+ .data.playerIcon1Orange_32
+                0x0000000000000000        0xc ./MyLib/icons.o
+ .data.playerIcon2Orange_32
+                0x0000000000000000        0xc ./MyLib/icons.o
+ .data.playerIcon3Orange_32
+                0x0000000000000000        0xc ./MyLib/icons.o
+ .data.playerIcon4Orange_32
+                0x0000000000000000        0xc ./MyLib/icons.o
+ .data.playerIcon5Orange_32
                 0x0000000000000000        0xc ./MyLib/icons.o
  .data.playerIcon1_Bomb
                 0x0000000000000000        0xc ./MyLib/icons.o
@@ -5517,15 +5539,17 @@ Discarded input sections
                 0x0000000000000000        0xc ./MyLib/icons.o
  .data.potionIcon
                 0x0000000000000000        0xc ./MyLib/icons.o
- .data.playerIcon1Yellow_112
+ .data.grassIcon
                 0x0000000000000000        0xc ./MyLib/icons.o
- .data.playerIcon2Yellow_112
+ .data.playerIcon1_112
                 0x0000000000000000        0xc ./MyLib/icons.o
- .data.playerIcon3Yellow_112
+ .data.playerIcon2_112
                 0x0000000000000000        0xc ./MyLib/icons.o
- .data.playerIcon4Yellow_112
+ .data.playerIcon3_112
                 0x0000000000000000        0xc ./MyLib/icons.o
- .data.playerIcon5Yellow_112
+ .data.playerIcon4_112
+                0x0000000000000000        0xc ./MyLib/icons.o
+ .data.playerIcon5_112
                 0x0000000000000000        0xc ./MyLib/icons.o
  .debug_macro   0x0000000000000000      0xac0 ./MyLib/icons.o
  .debug_macro   0x0000000000000000       0x22 ./MyLib/icons.o
@@ -7896,7 +7920,7 @@ LOAD C:/Users/sunsu/.eclipse/com.st.stm32cube.ide.mcu.rcp.product_1.13.0_5596912
  .comment       0x0000000000000043       0x44 ./MyLib/icons.o
  .comment       0x0000000000000043       0x44 ./MyLib/my_lcd.o
 
-.debug_info     0x0000000000000000    0x1d935
+.debug_info     0x0000000000000000    0x1da58
  .debug_info    0x0000000000000000      0xd83 ./Core/Src/adc.o
  .debug_info    0x0000000000000d83      0x573 ./Core/Src/dma.o
  .debug_info    0x00000000000012f6      0x4b5 ./Core/Src/gpio.o
@@ -7932,10 +7956,10 @@ LOAD C:/Users/sunsu/.eclipse/com.st.stm32cube.ide.mcu.rcp.product_1.13.0_5596912
  .debug_info    0x0000000000014633     0x2ab2 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
  .debug_info    0x00000000000170e5     0x16bb ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
  .debug_info    0x00000000000187a0     0x3a6d ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
- .debug_info    0x000000000001c20d      0x691 ./MyLib/icons.o
- .debug_info    0x000000000001c89e     0x1097 ./MyLib/my_lcd.o
+ .debug_info    0x000000000001c20d      0x7b4 ./MyLib/icons.o
+ .debug_info    0x000000000001c9c1     0x1097 ./MyLib/my_lcd.o
 
-.debug_abbrev   0x0000000000000000     0x47ef
+.debug_abbrev   0x0000000000000000     0x47e3
  .debug_abbrev  0x0000000000000000      0x228 ./Core/Src/adc.o
  .debug_abbrev  0x0000000000000228      0x10e ./Core/Src/dma.o
  .debug_abbrev  0x0000000000000336      0x152 ./Core/Src/gpio.o
@@ -7971,8 +7995,8 @@ LOAD C:/Users/sunsu/.eclipse/com.st.stm32cube.ide.mcu.rcp.product_1.13.0_5596912
  .debug_abbrev  0x0000000000003cfb      0x278 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
  .debug_abbrev  0x0000000000003f73      0x283 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
  .debug_abbrev  0x00000000000041f6      0x2e6 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
- .debug_abbrev  0x00000000000044dc       0xef ./MyLib/icons.o
- .debug_abbrev  0x00000000000045cb      0x224 ./MyLib/my_lcd.o
+ .debug_abbrev  0x00000000000044dc       0xe3 ./MyLib/icons.o
+ .debug_abbrev  0x00000000000045bf      0x224 ./MyLib/my_lcd.o
 
 .debug_aranges  0x0000000000000000     0x18c8
  .debug_aranges
@@ -8312,7 +8336,7 @@ LOAD C:/Users/sunsu/.eclipse/com.st.stm32cube.ide.mcu.rcp.product_1.13.0_5596912
  .debug_line    0x0000000000022e46      0x829 ./MyLib/icons.o
  .debug_line    0x000000000002366f      0xed3 ./MyLib/my_lcd.o
 
-.debug_str      0x0000000000000000   0x107f23
+.debug_str      0x0000000000000000   0x107fdf
  .debug_str     0x0000000000000000    0xfb769 ./Core/Src/adc.o
                                       0xfbf0e (size before relaxing)
  .debug_str     0x00000000000fb769       0x29 ./Core/Src/dma.o
@@ -8383,9 +8407,9 @@ LOAD C:/Users/sunsu/.eclipse/com.st.stm32cube.ide.mcu.rcp.product_1.13.0_5596912
                                       0xfb9ec (size before relaxing)
  .debug_str     0x0000000000107112      0x846 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
                                       0xfba8c (size before relaxing)
- .debug_str     0x0000000000107958      0x360 ./MyLib/icons.o
-                                      0xfaf5b (size before relaxing)
- .debug_str     0x0000000000107cb8      0x26b ./MyLib/my_lcd.o
+ .debug_str     0x0000000000107958      0x41c ./MyLib/icons.o
+                                      0xfb017 (size before relaxing)
+ .debug_str     0x0000000000107d74      0x26b ./MyLib/my_lcd.o
                                       0xff76e (size before relaxing)
 
 .debug_frame    0x0000000000000000     0x794c

@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Buffer"/>
+		<item key="selection" value="playerIcon1"/>
 		<list key="findhistory">
+			<item value="playerIcon1"/>
 			<item value="buffer"/>
 			<item value="Image"/>
 			<item value="icons."/>
@@ -22,7 +23,6 @@
 			<item value="cmd"/>
 			<item value="getTouchPosition"/>
 			<item value="getto"/>
-			<item value="gett"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
